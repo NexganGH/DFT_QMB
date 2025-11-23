@@ -3,7 +3,7 @@ from gpaw import GPAW, PW
 # --------------------------------------------------------
 # Load relaxed structure (geometry + initial density)
 # --------------------------------------------------------
-calc_relaxed = GPAW('graphene_relaxed.gpw')
+calc_relaxed = GPAW('../outputs/graphene_relaxed.gpw')
 
 atoms = calc_relaxed.atoms
 

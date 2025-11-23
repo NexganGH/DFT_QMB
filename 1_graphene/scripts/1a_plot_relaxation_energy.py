@@ -2,7 +2,7 @@ from ase.io import read
 import matplotlib.pyplot as plt
 
 # Read all images from the trajectory
-images = read('graphene_relax.traj', index=':')
+images = read('../outputs/graphene_relax.traj', index=':')
 
 energies = [img.get_potential_energy() for img in images]
 

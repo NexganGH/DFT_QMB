@@ -28,7 +28,7 @@ atoms.calc = calc
 mask = [True, True, False, True, False, False]
 filter = ExpCellFilter(atoms, mask=mask)
 
-traj = Trajectory('graphene_relax.traj', 'w', atoms)
+traj = Trajectory('../outputs/graphene_relax.traj', 'w', atoms)
 
 opt = BFGS(filter,
            logfile='relax.log',

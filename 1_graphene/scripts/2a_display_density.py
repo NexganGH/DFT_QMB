@@ -5,7 +5,7 @@ from gpaw import GPAW
 # ----------------------------
 # Load DFT and extract density
 # ----------------------------
-calc = GPAW("graphene_lda_scf.gpw")
+calc = GPAW("../outputs/graphene_lda_scf.gpw")
 rho = calc.get_all_electron_density(gridrefinement=1)
 nx, ny, nz = rho.shape
 cell = calc.atoms.cell[:]

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 # -----------------------------------------------------
 # 1. Load raw band-structure data
 # -----------------------------------------------------
-data = np.load('graphene_bands_raw.npz')
+data = np.load('../outputs/graphene_bands_raw.npz')
 
 x = data['x']
 xticks = data['xticks']
@@ -34,7 +34,7 @@ plt.tight_layout()
 # -----------------------------------------------------
 # 3. Save + show
 # -----------------------------------------------------
-plt.savefig('graphene_bandstructure.png', dpi=300)
+plt.savefig('../outputs/graphene_bandstructure.png', dpi=300)
 plt.show()
 
 print("Saved plot to graphene_bandstructure.png")

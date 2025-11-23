@@ -5,7 +5,7 @@ import numpy as np
 # -----------------------------------------------------
 # 1. Load SCF ground-state
 # -----------------------------------------------------
-calc_scf = GPAW('graphene_scf.gpw')
+calc_scf = GPAW('../outputs/graphene_scf.gpw')
 
 # -----------------------------------------------------
 # 2. Build high-symmetry k-path
@@ -51,7 +51,7 @@ fermi = calc.get_fermi_level()
 # 5. Save raw data to NPZ file
 # -----------------------------------------------------
 np.savez(
-    'graphene_bands_raw.npz',
+    '../outputs/graphene_bands_raw.npz',
     x=x,
     xticks=xticks,
     labels=np.array(['Γ', 'K', 'M', 'Γ']),
