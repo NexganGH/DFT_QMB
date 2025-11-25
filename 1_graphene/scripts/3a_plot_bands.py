@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from plotstyle import set_plot_style
+set_plot_style()
+
+
 # -----------------------------------------------------
 # 1. Load raw band-structure data
 # -----------------------------------------------------

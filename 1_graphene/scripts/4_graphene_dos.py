@@ -22,6 +22,9 @@ e_f = calc.get_fermi_level()
 # width — Gaussian broadening in eV
 e, dos = calc.get_dos(spin=0, npts=2001, width=0.2)
 
+
+
+
 # ----------------------------------------------------
 # 3. Save DOS data (optional)
 # ----------------------------------------------------

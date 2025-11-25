@@ -1,0 +1,23 @@
+Graphene Band-Structure Calculation
+Timestamp: 2025-11-25 11:45:03
+
+=== k-Path ===
+High-symmetry path: Γ → K → M → Γ
+Total number of k-points: 200
+
+=== Energetics ===
+Fermi level (from SCF): -2.279078 eV
+Minimum eigenvalue (shifted): -19.292183 eV
+Maximum eigenvalue (shifted): 13.694458 eV
+
+=== Band Information ===
+Number of bands: 8
+Eigenvalues include both occupied and unoccupied states.
+
+=== Computational Parameters ===
+Exchange–correlation functional: PBE
+Basis: Plane waves (PAW method)
+Cutoff energy: 600 eV (inherited from SCF)
+k-point path sampling: 200 points
+Density used: fixed-density from SCF
+Symmetry: off

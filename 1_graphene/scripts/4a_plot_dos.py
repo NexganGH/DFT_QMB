@@ -2,6 +2,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import plotstyle
+
+plotstyle.set_plot_style()
 
 outdir = '../outputs/'
 
