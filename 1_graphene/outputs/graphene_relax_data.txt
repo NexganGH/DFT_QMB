@@ -1,0 +1,19 @@
+Graphene Relaxation Results
+Timestamp: 2025-11-25 10:28:49
+
+=== Structural Properties ===
+Lattice constant a: 2.467728 Å
+C–C bond length d_CC: 1.424744 Å
+
+=== Energetics ===
+Total energy: -18.445126 eV
+Energy per atom: -9.222563 eV/atom
+
+=== Computational Parameters ===
+Exchange–correlation: PBE
+Basis: Plane waves
+Cutoff: 600 eV
+k-points: 12 × 12 × 1
+Vacuum spacing: 8 Å
+Force threshold: 0.02 eV/Å
+Cell relaxation mask: [True, True, False, True, False, False]

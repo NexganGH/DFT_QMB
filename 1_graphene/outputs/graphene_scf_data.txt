@@ -1,0 +1,14 @@
+Graphene SCF Calculation Results
+Timestamp: 2025-11-25 11:43:03
+
+=== Energetics ===
+SCF total energy: -18.477972 eV
+Fermi level:      -1.991336 eV
+
+=== Computational Parameters ===
+Exchange–correlation: PBE
+Basis: Plane waves
+Cutoff: 600 eV
+k-points: 18 × 18 × 1
+Smearing: Fermi–Dirac, width = 0.01 eV
+

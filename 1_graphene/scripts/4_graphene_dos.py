@@ -20,7 +20,7 @@ e_f = calc.get_fermi_level()
 # ----------------------------------------------------
 # npts — resolution
 # width — Gaussian broadening in eV
-e, dos = calc.get_dos(spin=0, npts=2001, width=0.2)
+e, dos = calc.get_dos(spin=0, npts=2001, width=0.3)
 
 
 
