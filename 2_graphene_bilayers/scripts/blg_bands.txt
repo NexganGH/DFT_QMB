@@ -5,22 +5,22 @@
  |__ |  _|___|_____|  25.7.0
  |___|_|             
 
-User:   nico@NicosHuawei
-Date:   Thu Nov 27 12:33:59 2025
+User:   nico@NicosPC
+Date:   Thu Nov 27 17:04:35 2025
 Arch:   x86_64
-Pid:    32819
+Pid:    28699
 CWD:    /mnt/c/Users/Torto/PycharmProjects/DFT_QMB/2_graphene_bilayers/scripts
-Python: 3.12.2
-gpaw:   /home/nico/miniforge3/envs/dft/lib/python3.12/site-packages/gpaw
-_gpaw:  /home/nico/miniforge3/envs/dft/lib/python3.12/site-packages/
+Python: 3.12.3
+gpaw:   /home/nico/gpaw-env/lib/python3.12/site-packages/gpaw
+_gpaw:  /home/nico/gpaw-env/lib/python3.12/site-packages/
         _gpaw.cpython-312-x86_64-linux-gnu.so
-ase:    /home/nico/miniforge3/envs/dft/lib/python3.12/site-packages/ase (version 3.26.0)
-numpy:  /home/nico/miniforge3/envs/dft/lib/python3.12/site-packages/numpy (version 2.3.5)
-scipy:  /home/nico/miniforge3/envs/dft/lib/python3.12/site-packages/scipy (version 1.16.3)
-libxc:  7.0.0
+ase:    /home/nico/gpaw-env/lib/python3.12/site-packages/ase (version 3.26.0)
+numpy:  /home/nico/gpaw-env/lib/python3.12/site-packages/numpy (version 2.3.5)
+scipy:  /home/nico/gpaw-env/lib/python3.12/site-packages/scipy (version 1.16.3)
+libxc:  5.2.3
 units:  Angstrom and eV
 cores: 1
-OpenMP: True
+OpenMP: False
 OMP_NUM_THREADS: 1
 
 Reading from blg_scf.gpw
@@ -43,7 +43,7 @@ species:
     valence: 4
     core: 2
     charge: 0.0
-    file: /home/nico/miniforge3/envs/dft/lib/python3.12/site-packages/gpaw_data/setups/C.PBE.gz
+    file: /home/nico/gpaw-env/lib/python3.12/site-packages/gpaw_data/setups/C.PBE.gz
     compensation charges: {type: gauss,
                            rc: 0.20,
                            lmax: 2}
@@ -97,7 +97,7 @@ Wave functions: Plane wave expansion
   Cutoff energy: 600.000 eV
   Number of coefficients (min, max): 3435, 3557
   Pulay-stress correction: 0.000000 eV/Ang^3 (de/decut=0.000000)
-  Using FFTW library
+  Using Numpy's FFT
   ScaLapack parameters: grid=1x1, blocksize=None
   Wavefunction extrapolation:
     Improved wavefunction reuse through dual PAW basis 
@@ -131,7 +131,7 @@ Hamiltonian:
 XC parameters: PBE with 2 nearest neighbor stencil
 
 Memory estimate:
-  Process memory now: 187.59 MiB
+  Process memory now: 157.73 MiB
   Calculator: 123.12 MiB
     Density: 10.14 MiB
       Arrays: 4.67 MiB
@@ -161,12 +161,12 @@ Bands to converge: occupied
 
 Timing:           incl.     excl.
 ----------------------------------------
-PWDescriptor:     0.334     0.334   0.2% |
+PWDescriptor:     0.059     0.059   0.0% |
 Redistribute:     0.000     0.000   0.0% |
-Set symmetry:     0.010     0.010   0.0% |
-Other:          202.344   202.344  99.8% |---------------------------------------|
+Set symmetry:     0.006     0.006   0.0% |
+Other:          287.251   287.251 100.0% |---------------------------------------|
 ----------------------------------------
-Total:                    202.688 100.0%
+Total:                    287.317 100.0%
 
-Memory usage: 566.33 MiB
-Date: Thu Nov 27 12:37:22 2025
+Memory usage: 492.64 MiB
+Date: Thu Nov 27 17:09:23 2025

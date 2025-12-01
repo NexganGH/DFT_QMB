@@ -173,6 +173,15 @@ This is now a complete, reproducible DFT environment.
 
 ---
 
+# 10. (Optional) Install Pythonk3-tk to visualize Ase structures
+
+On WSL
+```
+sudo apt install python3-tk
+```
+
+---
+
 # 🎉 Done!
 
 You now have:
