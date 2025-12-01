@@ -19,4 +19,4 @@ grap_bilayer = Atoms('C' * 4,
                        ],
                  pbc=True)
 
-view(grap_bilayer.repeat((3, 3, 2)))
+view(grap_bilayer.repeat((3, 3, 1)))
