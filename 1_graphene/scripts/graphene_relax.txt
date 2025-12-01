@@ -5,18 +5,18 @@
  |__ |  _|___|_____|  25.7.0
  |___|_|             
 
-User:   nico@NicosPC
-Date:   Tue Nov 25 10:27:35 2025
+User:   feddex@Feddexpc
+Date:   Thu Nov 27 16:50:19 2025
 Arch:   x86_64
-Pid:    4631
-CWD:    /mnt/c/Users/Torto/PycharmProjects/DFT_QMB/1_graphene/scripts
-Python: 3.12.3
-gpaw:   /home/nico/gpaw-env/lib/python3.12/site-packages/gpaw
-_gpaw:  /home/nico/gpaw-env/lib/python3.12/site-packages/
-        _gpaw.cpython-312-x86_64-linux-gnu.so
-ase:    /home/nico/gpaw-env/lib/python3.12/site-packages/ase (version 3.26.0)
-numpy:  /home/nico/gpaw-env/lib/python3.12/site-packages/numpy (version 2.3.5)
-scipy:  /home/nico/gpaw-env/lib/python3.12/site-packages/scipy (version 1.16.3)
+Pid:    16856
+CWD:    /mnt/c/Users/feder/PycharmProjects/DFT_QMB/1_graphene/scripts
+Python: 3.13.9
+gpaw:   /home/feddex/gpaw-env/lib/python3.13/site-packages/gpaw
+_gpaw:  /home/feddex/gpaw-env/lib/python3.13/site-packages/
+        _gpaw.cpython-313-x86_64-linux-gnu.so
+ase:    /home/feddex/gpaw-env/lib/python3.13/site-packages/ase (version 3.26.0)
+numpy:  /home/feddex/gpaw-env/lib/python3.13/site-packages/numpy (version 2.3.5)
+scipy:  /home/feddex/gpaw-env/lib/python3.13/site-packages/scipy (version 1.16.3)
 libxc:  5.2.3
 units:  Angstrom and eV
 cores: 1
@@ -41,7 +41,7 @@ species:
     valence: 4
     core: 2
     charge: 0.0
-    file: /home/nico/gpaw-env/lib/python3.12/site-packages/gpaw_data/setups/C.PBE.gz
+    file: /home/feddex/gpaw-env/lib/python3.13/site-packages/gpaw_data/setups/C.PBE.gz
     compensation charges: {type: gauss,
                            rc: 0.20,
                            lmax: 2}
@@ -134,7 +134,7 @@ Hamiltonian:
 XC parameters: PBE with 2 nearest neighbor stencil
 
 Memory estimate:
-  Process memory now: 140.36 MiB
+  Process memory now: 124.72 MiB
   Calculator: 40.98 MiB
     Density: 8.12 MiB
       Arrays: 3.73 MiB
@@ -197,20 +197,20 @@ Effective grid spacing dv^(1/3) = 0.1646
 
      iter     time        total  log10-change:
                          energy   eigst   dens
-iter:   1 10:27:37   -19.443384
-iter:   2 10:27:38   -19.349827   -0.83  -0.80
-iter:   3 10:27:40   -19.078805   -0.25  -0.81
-iter:   4 10:27:41   -18.631464   -1.70  -0.95
-iter:   5 10:27:43   -18.664244   -3.00  -1.19
-iter:   6 10:27:45   -18.444292   -1.23  -1.15
-iter:   7 10:27:46   -18.444932   -2.90  -2.51
-iter:   8 10:27:48   -18.444623c  -4.20  -2.41
-iter:   9 10:27:49   -18.443838c  -3.54  -2.47
-iter:  10 10:27:51   -18.443820c  -5.38  -2.92
-iter:  11 10:27:52   -18.443836c  -6.10  -2.92
-iter:  12 10:27:54   -18.443743c  -4.65  -2.88
-iter:  13 10:27:56   -18.443743c  -6.51  -4.25c
-iter:  14 10:27:57   -18.443743c  -7.63c -4.42c
+iter:   1 16:50:20   -19.443384
+iter:   2 16:50:22   -19.349827   -0.83  -0.80
+iter:   3 16:50:23   -19.078805   -0.25  -0.81
+iter:   4 16:50:24   -18.631464   -1.70  -0.95
+iter:   5 16:50:25   -18.664244   -3.00  -1.19
+iter:   6 16:50:26   -18.444292   -1.23  -1.15
+iter:   7 16:50:28   -18.444932   -2.90  -2.51
+iter:   8 16:50:29   -18.444623c  -4.20  -2.41
+iter:   9 16:50:30   -18.443838c  -3.54  -2.47
+iter:  10 16:50:31   -18.443820c  -5.38  -2.92
+iter:  11 16:50:32   -18.443836c  -6.10  -2.92
+iter:  12 16:50:33   -18.443743c  -4.65  -2.88
+iter:  13 16:50:34   -18.443743c  -6.51  -4.25c
+iter:  14 16:50:35   -18.443743c  -7.63c -4.42c
 
 Converged after 14 iterations.
 
@@ -250,12 +250,12 @@ Transition (v -> c):
 No difference between direct/indirect transitions
 Stress tensor:
     -0.005122     0.000000     0.000000
-     0.000000    -0.005122     0.000000
+    -0.000000    -0.005122     0.000000
      0.000000     0.000000     0.000130
 
 Forces in eV/Ang:
-  0 C     0.00000    0.00000    0.00000
-  1 C    -0.00000    0.00000    0.00000
+  0 C    -0.00000   -0.00000    0.00000
+  1 C     0.00000    0.00000    0.00000
 
 System changes: cell, positions 
 
@@ -269,7 +269,7 @@ species:
     valence: 4
     core: 2
     charge: 0.0
-    file: /home/nico/gpaw-env/lib/python3.12/site-packages/gpaw_data/setups/C.PBE.gz
+    file: /home/feddex/gpaw-env/lib/python3.13/site-packages/gpaw_data/setups/C.PBE.gz
     compensation charges: {type: gauss,
                            rc: 0.20,
                            lmax: 2}
@@ -362,7 +362,7 @@ Hamiltonian:
 XC parameters: PBE with 2 nearest neighbor stencil
 
 Memory estimate:
-  Process memory now: 199.75 MiB
+  Process memory now: 182.91 MiB
   Calculator: 41.34 MiB
     Density: 8.15 MiB
       Arrays: 3.73 MiB
@@ -409,7 +409,7 @@ Creating initial wave functions:
 Atomic positions and initial magnetic moments
 
 Positions:
-   0 C      0.000000    0.000000    8.000000    ( 0.0000,  0.0000,  0.0000)
+   0 C     -0.000000   -0.000000    8.000000    ( 0.0000,  0.0000,  0.0000)
    1 C      1.237546    0.714498    8.000000    ( 0.0000,  0.0000,  0.0000)
 
 Unit cell:
@@ -425,21 +425,21 @@ Effective grid spacing dv^(1/3) = 0.1652
 
      iter     time        total  log10-change:
                          energy   eigst   dens
-iter:   1 10:28:00   -19.383520
-iter:   2 10:28:02   -19.297213   -0.84  -0.81
-iter:   3 10:28:03   -19.015360   -0.28  -0.82
-iter:   4 10:28:05   -18.623617   -1.77  -0.97
-iter:   5 10:28:05   -18.665724   -2.90  -1.20
-iter:   6 10:28:07   -18.444285   -1.24  -1.15
-iter:   7 10:28:09   -18.445015   -2.90  -2.56
-iter:   8 10:28:10   -18.444768c  -4.18  -2.43
-iter:   9 10:28:12   -18.444019c  -3.58  -2.48
-iter:  10 10:28:13   -18.444040c  -5.15  -2.95
-iter:  11 10:28:15   -18.444049c  -6.10  -2.87
-iter:  12 10:28:17   -18.443944c  -4.80  -2.84
-iter:  13 10:28:18   -18.443941c  -5.82  -3.57
-iter:  14 10:28:20   -18.443941c  -7.00  -4.42c
-iter:  15 10:28:22   -18.443941c  -8.06c -4.62c
+iter:   1 16:50:37   -19.383520
+iter:   2 16:50:38   -19.297213   -0.84  -0.81
+iter:   3 16:50:39   -19.015360   -0.28  -0.82
+iter:   4 16:50:40   -18.623617   -1.77  -0.97
+iter:   5 16:50:41   -18.665724   -2.90  -1.20
+iter:   6 16:50:42   -18.444285   -1.24  -1.15
+iter:   7 16:50:43   -18.445015   -2.90  -2.56
+iter:   8 16:50:45   -18.444768c  -4.18  -2.43
+iter:   9 16:50:46   -18.444019c  -3.58  -2.48
+iter:  10 16:50:47   -18.444040c  -5.15  -2.95
+iter:  11 16:50:48   -18.444049c  -6.10  -2.87
+iter:  12 16:50:49   -18.443944c  -4.80  -2.84
+iter:  13 16:50:51   -18.443941c  -5.82  -3.57
+iter:  14 16:50:52   -18.443941c  -7.00  -4.42c
+iter:  15 16:50:53   -18.443941c  -8.06c -4.62c
 
 Converged after 15 iterations.
 
@@ -447,7 +447,7 @@ Dipole moment: (0.867388, -0.500787, -0.000000) |e|*Ang
 
 Energy contributions relative to reference atoms: (reference = -2055.256231)
 
-Kinetic:        +16.334830
+Kinetic:        +16.334831
 Potential:      -17.173205
 External:        +0.000000
 XC:             -17.639373
@@ -483,8 +483,8 @@ Stress tensor:
      0.000000     0.000000     0.000139
 
 Forces in eV/Ang:
-  0 C    -0.00000    0.00000    0.00000
-  1 C     0.00000    0.00000    0.00000
+  0 C    -0.00000   -0.00000    0.00000
+  1 C     0.00000   -0.00000    0.00000
 
 System changes: cell, positions 
 
@@ -498,7 +498,7 @@ species:
     valence: 4
     core: 2
     charge: 0.0
-    file: /home/nico/gpaw-env/lib/python3.12/site-packages/gpaw_data/setups/C.PBE.gz
+    file: /home/feddex/gpaw-env/lib/python3.13/site-packages/gpaw_data/setups/C.PBE.gz
     compensation charges: {type: gauss,
                            rc: 0.20,
                            lmax: 2}
@@ -591,7 +591,7 @@ Hamiltonian:
 XC parameters: PBE with 2 nearest neighbor stencil
 
 Memory estimate:
-  Process memory now: 205.21 MiB
+  Process memory now: 186.52 MiB
   Calculator: 41.19 MiB
     Density: 8.14 MiB
       Arrays: 3.73 MiB
@@ -638,7 +638,7 @@ Creating initial wave functions:
 Atomic positions and initial magnetic moments
 
 Positions:
-   0 C     -0.000000    0.000000    8.000000    ( 0.0000,  0.0000,  0.0000)
+   0 C     -0.000000   -0.000000    8.000000    ( 0.0000,  0.0000,  0.0000)
    1 C      1.233864    0.712372    8.000000    ( 0.0000,  0.0000,  0.0000)
 
 Unit cell:
@@ -654,21 +654,21 @@ Effective grid spacing dv^(1/3) = 0.1649
 
      iter     time        total  log10-change:
                          energy   eigst   dens
-iter:   1 10:28:25   -19.413623
-iter:   2 10:28:27   -19.323856   -0.83  -0.80
-iter:   3 10:28:28   -19.048150   -0.27  -0.82
-iter:   4 10:28:30   -18.628917   -1.74  -0.96
-iter:   5 10:28:32   -18.666398   -2.95  -1.20
-iter:   6 10:28:33   -18.445564   -1.23  -1.15
-iter:   7 10:28:35   -18.446256   -2.90  -2.54
-iter:   8 10:28:37   -18.445975c  -4.19  -2.42
-iter:   9 10:28:38   -18.445235c  -3.53  -2.47
-iter:  10 10:28:40   -18.445216c  -5.37  -2.88
-iter:  11 10:28:42   -18.445252c  -5.81  -2.89
-iter:  12 10:28:43   -18.445135c  -4.36  -2.81
-iter:  13 10:28:45   -18.445126c  -6.06  -3.41
-iter:  14 10:28:46   -18.445126c  -7.14  -4.20c
-iter:  15 10:28:48   -18.445126c  -7.52c -4.64c
+iter:   1 16:50:55   -19.413623
+iter:   2 16:50:56   -19.323856   -0.83  -0.80
+iter:   3 16:50:57   -19.048150   -0.27  -0.82
+iter:   4 16:50:58   -18.628917   -1.74  -0.96
+iter:   5 16:50:59   -18.666398   -2.95  -1.20
+iter:   6 16:51:00   -18.445564   -1.23  -1.15
+iter:   7 16:51:02   -18.446256   -2.90  -2.54
+iter:   8 16:51:03   -18.445975c  -4.19  -2.42
+iter:   9 16:51:04   -18.445235c  -3.53  -2.47
+iter:  10 16:51:05   -18.445216c  -5.37  -2.88
+iter:  11 16:51:06   -18.445252c  -5.81  -2.89
+iter:  12 16:51:07   -18.445135c  -4.36  -2.81
+iter:  13 16:51:08   -18.445126c  -6.06  -3.41
+iter:  14 16:51:09   -18.445126c  -7.14  -4.20c
+iter:  15 16:51:10   -18.445126c  -7.52c -4.64c
 
 Converged after 15 iterations.
 
@@ -707,82 +707,82 @@ Transition (v -> c):
   (s=0, k=28, n=3, [0.38, 0.29, 0.00]) -> (s=0, k=28, n=4, [0.38, 0.29, 0.00])
 No difference between direct/indirect transitions
 Stress tensor:
-     0.000024    -0.000000     0.000000
-    -0.000000     0.000024     0.000000
+     0.000024     0.000000     0.000000
+     0.000000     0.000024     0.000000
      0.000000     0.000000     0.000124
 
 Forces in eV/Ang:
-  0 C     0.00000    0.00000    0.00000
+  0 C    -0.00000    0.00000    0.00000
   1 C     0.00000    0.00000    0.00000
 
 Writing to graphene_relaxed.gpw (mode='')
 
 Timing:                              incl.     excl.
 -----------------------------------------------------------
-Forces:                              0.231     0.231   0.3% |
-Hamiltonian:                         0.279     0.002   0.0% |
- Atomic:                             0.109     0.001   0.0% |
-  XC Correction:                     0.108     0.108   0.1% |
- Calculate atomic Hamiltonians:      0.010     0.010   0.0% |
+Forces:                              0.174     0.174   0.3% |
+Hamiltonian:                         0.363     0.002   0.0% |
+ Atomic:                             0.112     0.001   0.0% |
+  XC Correction:                     0.110     0.110   0.2% |
+ Calculate atomic Hamiltonians:      0.009     0.009   0.0% |
  Communicate:                        0.000     0.000   0.0% |
  Initialize Hamiltonian:             0.000     0.000   0.0% |
  Poisson:                            0.002     0.002   0.0% |
- XC 3D grid:                         0.156     0.156   0.2% |
-LCAO initialization:                 1.373     0.026   0.0% |
- LCAO eigensolver:                   0.182     0.002   0.0% |
-  Calculate projections:             0.002     0.002   0.0% |
-  DenseAtomicCorrection:             0.007     0.007   0.0% |
-  Distribute overlap matrix:         0.001     0.001   0.0% |
-  Orbital Layouts:                   0.010     0.010   0.0% |
-  Potential matrix:                  0.150     0.150   0.2% |
-  Sum over cells:                    0.011     0.011   0.0% |
- LCAO to grid:                       0.944     0.944   1.3% ||
- Set positions (LCAO WFS):           0.221     0.037   0.1% |
+ XC 3D grid:                         0.238     0.238   0.5% |
+LCAO initialization:                 0.802     0.019   0.0% |
+ LCAO eigensolver:                   0.105     0.001   0.0% |
+  Calculate projections:             0.001     0.001   0.0% |
+  DenseAtomicCorrection:             0.004     0.004   0.0% |
+  Distribute overlap matrix:         0.000     0.000   0.0% |
+  Orbital Layouts:                   0.005     0.005   0.0% |
+  Potential matrix:                  0.087     0.087   0.2% |
+  Sum over cells:                    0.006     0.006   0.0% |
+ LCAO to grid:                       0.544     0.544   1.0% |
+ Set positions (LCAO WFS):           0.133     0.020   0.0% |
   Basic WFS set positions:           0.001     0.001   0.0% |
   Basis functions set positions:     0.000     0.000   0.0% |
-  P tci:                             0.082     0.082   0.1% |
-  ST tci:                            0.087     0.087   0.1% |
-  mktci:                             0.013     0.013   0.0% |
-PWDescriptor:                        0.064     0.064   0.1% |
-SCF-cycle:                          69.306     0.360   0.5% |
- Davidson:                          55.540     5.415   7.3% |--|
-  Apply H:                          11.805    11.601  15.5% |-----|
-   HMM T:                            0.204     0.204   0.3% |
-  Subspace diag:                    12.981     0.093   0.1% |
-   calc_h_matrix:                   12.257     0.395   0.5% |
-    Apply H:                        11.861    11.639  15.6% |-----|
-     HMM T:                          0.222     0.222   0.3% |
-   diagonalize:                      0.231     0.231   0.3% |
-   rotate_psi:                       0.400     0.400   0.5% |
-  calc. matrices:                   24.178     2.163   2.9% ||
-   Apply H:                         22.016    21.593  28.9% |-----------|
-    HMM T:                           0.423     0.423   0.6% |
-  diagonalize:                       0.548     0.548   0.7% |
-  rotate_psi:                        0.614     0.614   0.8% |
- Density:                            8.767     0.001   0.0% |
-  Atomic density matrices:           0.050     0.050   0.1% |
-  Mix:                               2.617     2.617   3.5% ||
-  Multipole moments:                 0.003     0.003   0.0% |
-  Pseudo density:                    6.097     5.664   7.6% |--|
-   Symmetrize density:               0.433     0.433   0.6% |
- Hamiltonian:                        4.538     0.035   0.0% |
-  Atomic:                            1.541     0.020   0.0% |
-   XC Correction:                    1.521     1.521   2.0% ||
-  Calculate atomic Hamiltonians:     0.159     0.159   0.2% |
+  P tci:                             0.053     0.053   0.1% |
+  ST tci:                            0.052     0.052   0.1% |
+  mktci:                             0.008     0.008   0.0% |
+PWDescriptor:                        0.065     0.065   0.1% |
+SCF-cycle:                          48.247     0.244   0.5% |
+ Davidson:                          35.659     4.079   7.8% |--|
+  Apply H:                           6.991     6.855  13.1% |----|
+   HMM T:                            0.136     0.136   0.3% |
+  Subspace diag:                     8.071     0.087   0.2% |
+   calc_h_matrix:                    7.415     0.332   0.6% |
+    Apply H:                         7.082     6.918  13.3% |----|
+     HMM T:                          0.164     0.164   0.3% |
+   diagonalize:                      0.248     0.248   0.5% |
+   rotate_psi:                       0.321     0.321   0.6% |
+  calc. matrices:                   15.479     1.678   3.2% ||
+   Apply H:                         13.801    13.538  25.9% |---------|
+    HMM T:                           0.263     0.263   0.5% |
+  diagonalize:                       0.555     0.555   1.1% |
+  rotate_psi:                        0.483     0.483   0.9% |
+ Density:                            8.024     0.001   0.0% |
+  Atomic density matrices:           0.038     0.038   0.1% |
+  Mix:                               4.504     4.504   8.6% |--|
+  Multipole moments:                 0.002     0.002   0.0% |
+  Pseudo density:                    3.480     3.328   6.4% |--|
+   Symmetrize density:               0.152     0.152   0.3% |
+ Hamiltonian:                        4.244     0.042   0.1% |
+  Atomic:                            1.417     0.018   0.0% |
+   XC Correction:                    1.399     1.399   2.7% ||
+  Calculate atomic Hamiltonians:     0.127     0.127   0.2% |
   Communicate:                       0.000     0.000   0.0% |
-  Poisson:                           0.023     0.023   0.0% |
-  XC 3D grid:                        2.781     2.781   3.7% ||
- Orthonormalize:                     0.100     0.006   0.0% |
-  calc_s_matrix:                     0.016     0.016   0.0% |
-  inverse-cholesky:                  0.008     0.008   0.0% |
-  projections:                       0.057     0.057   0.1% |
-  rotate_psi_s:                      0.013     0.013   0.0% |
-Set symmetry:                        0.038     0.038   0.1% |
-Stress:                              2.725     0.000   0.0% |
- Stress tensor:                      2.725     2.725   3.7% ||
-Other:                               0.636     0.636   0.9% |
+  Poisson:                           0.031     0.031   0.1% |
+  XC 3D grid:                        2.627     2.627   5.0% |-|
+ Orthonormalize:                     0.076     0.005   0.0% |
+  calc_s_matrix:                     0.011     0.011   0.0% |
+  inverse-cholesky:                  0.009     0.009   0.0% |
+  projections:                       0.043     0.043   0.1% |
+  rotate_psi_s:                      0.009     0.009   0.0% |
+Set symmetry:                        0.029     0.029   0.1% |
+Stress:                              1.959     0.000   0.0% |
+ Stress tensor:                      1.959     1.959   3.8% |-|
+Other:                               0.546     0.546   1.0% |
 -----------------------------------------------------------
-Total:                                        74.651 100.0%
+Total:                                        52.184 100.0%
 
-Memory usage: 205.33 MiB
-Date: Tue Nov 25 10:28:49 2025
+Memory usage: 188.24 MiB
+Date: Thu Nov 27 16:51:11 2025
