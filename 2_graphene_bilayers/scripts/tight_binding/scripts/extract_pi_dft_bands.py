@@ -9,7 +9,7 @@ import os
 from ase.dft.kpoints import kpoint_convert
 
 
-def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, kpts=None) -> None:
+def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=['G', 'M', 'K', 'G'], kpts=None) -> None:
     """
     Save π-band energies derived from a DFT calculation and optionally prepare
     them for further Tight-Binding (TB) fitting. This function evaluates the
@@ -35,8 +35,8 @@ def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, kpts=None) -> None:
         None. Outputs from the band structure calculation are saved to a file
         named `gpaw_pi_bands.npz`.
     """
-    path = ['M', 'K', 'G']
-    bandpath: BandPath = get_bandpath(path, atoms.cell, npoints=20)#kpts, x, X = get_bandpath(path, atoms.cell, npoints=200)
+    #path = ['G', 'M', 'K', 'G']
+    bandpath: BandPath = get_bandpath(path, atoms.cell, npoints=50)#kpts, x, X = get_bandpath(path, atoms.cell, npoints=200)
     kpts: np.ndarray = bandpath.kpts
     x, X, labels = bandpath.get_linear_kpoint_axis()
 

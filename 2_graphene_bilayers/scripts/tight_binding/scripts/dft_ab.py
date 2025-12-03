@@ -4,11 +4,11 @@ from gpaw import GPAW, PW
 import os.path
 
 def run_dft_ab(filename='DFT.gpw') -> None:
-    '''
+    """
     Runs a DFT calculation for graphene AB bilayer and saves it in ../gpw/`filename`.gpw
     :param filename: GPW Filename
     :return: None
-    '''
+    """
     path = '../' + filename
     if os.path.isfile(path):
         raise 'Specified already exists! Delete it or change filename'
