@@ -1,7 +1,24 @@
 import numpy as np
 from ase.geometry import cell_to_cellpar
-class TBBandManager:
+import numpy as np
+import plotly.graph_objects as go
+from gpaw import GPAW, restart
 
+class TBBandManager:
+    """
+    Manager for Tight-Binding (TB) band structure analysis.
+
+    This class handles the construction and analysis of tight-binding band
+    structures for materials. It provides utilities to calculate various
+    properties, such as k-paths, band energies, and Hamiltonians for bilayer
+    systems, as well as methods for 3D band visualization using interactive
+    techniques.
+
+    :ivar a: Lattice constant extracted from the atomic cell.
+    :type a: float
+    :ivar a0: Adjusted lattice constant scaled by √3.
+    :type a0: float
+    """
     def __init__(self, atoms):
         self._atoms = atoms
         a, b, c, alpha, beta, gamma= cell_to_cellpar(atoms.cell)
@@ -106,3 +123,117 @@ class TBBandManager:
             eigs = np.linalg.eigvalsh(H)
             bands[i,:] = np.sort(np.real(eigs))
         return bands
+
+    def create_3d_plot(self, theta, kpts=None):
+        atoms, calc = restart('../gpw/ab.gpw')
+
+        # ======================================================
+        # 0. USER INPUTS (you MUST define these before running)
+        # ======================================================
+        # kpts_tb  = TB k-path: shape (N1, 2)
+        #kpts_tb, label_positions, labels = bands_manager.build_kpath()
+       # kpts_ase = dft_kpts
+        # kpts_ase = ASE k-path: shape (N2, 2)
+        # tb_bands = function that takes (Nk, 2) array of kpts
+        #            and returns energies shape (nbands, Nk)
+
+        # Example:
+        # E = tb_bands(kpts)   # returns (nbands, Nk)
+
+        # ======================================================
+        # 1. Build a 2D grid over kx, ky (same grid as your code)
+        # ======================================================
+        a0 = self.a0
+        Nk = 60
+        kx_vals = np.linspace(-2 * np.pi / a0, 2 * np.pi / a0, Nk)
+        ky_vals = np.linspace(-2 * np.pi / a0, 2 * np.pi / a0, Nk)
+        KX, KY = np.meshgrid(kx_vals, ky_vals)
+
+        # Flatten to shape (Nk^2, 2)
+        k_grid = np.c_[KX.ravel(), KY.ravel()]
+
+        # ======================================================
+        # 2. Compute TB bands on the grid using your tb_bands()
+        # ======================================================
+
+        Eall = self.tb_bands(k_grid, theta)  # shape (nbands, Nk*Nk)
+        Nk2, nbands = Eall.shape  # Nk2 = Nk*Nk
+
+        bands = np.zeros((Nk, Nk, nbands))
+        for n in range(nbands):
+            # take column n (all k-points for band n) and reshape
+            bands[:, :, n] = Eall[:, n].reshape(Nk, Nk)
+
+        # ======================================================
+        # 3. Create interactive 3D Plotly figure
+        # ======================================================
+
+        fig = go.Figure()
+
+        # --- plot band surfaces ---
+        for n in range(nbands):
+            fig.add_trace(go.Surface(
+                x=KX, y=KY, z=bands[:, :, n],
+                colorscale="Viridis",
+                opacity=0.65,
+                showscale=False,
+                name=f"Band {n + 1}"
+            ))
+
+        # ======================================================
+        # 4. Add TB k-path (your manual path)
+        # ======================================================
+
+        # compute energies along TB path
+        # E_tb_path = self.tb_bands(kpts_tb, theta0)  # shape (nbands, Nt)
+        # # choose which band to plot (0 = lowest)
+        # band_idx = 0
+        # fig.add_trace(go.Scatter3d(
+        #     x=kpts_tb[:, 0],
+        #     y=kpts_tb[:, 1],
+        #     z=E_tb_path[:, band_idx],  # pick one band
+        #     mode='lines',
+        #     line=dict(color='red', width=6),
+        #     name='TB path'
+        # ))
+
+        # ======================================================
+        # 5. Add ASE k-path (after convert → cartesian)
+        # ======================================================
+        #
+        # E_ase_path = bands_manager.tb_bands(kpts_ase, theta0)
+        # fig.add_trace(go.Scatter3d(
+        #     x=kpts_ase[:, 0],
+        #     y=kpts_ase[:, 1],
+        #     z=E_ase_path[:, band_idx],
+        #     mode='lines',
+        #     line=dict(color='blue', width=6),
+        #     name='ASE path'
+        # ))
+
+        # ======================================================
+        # 6. Final layout
+        # ======================================================
+
+        fig.update_layout(
+            title="3D Band Surfaces + TB & ASE k-Paths",
+            scene=dict(
+                xaxis_title="kx",
+                yaxis_title="ky",
+                zaxis_title="Energy (eV)",
+                xaxis=dict(backgroundcolor="black"),
+                yaxis=dict(backgroundcolor="black"),
+                zaxis=dict(backgroundcolor="black"),
+            ),
+            width=950,
+            height=800
+        )
+
+        # ======================================================
+        # 7. Save figure
+        # ======================================================
+
+        output_path = "../data/3d_bands.html"
+        fig.write_html(output_path)
+
+        print(f'File saved in {output_path}')

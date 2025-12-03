@@ -1,51 +1,97 @@
-from gpaw import GPAW, restart
+from gpaw import restart
 import numpy as np
-
-# --- load your calc from the gpw file ---
-atoms, calc = restart('DFT.gpw')  # or GPAW('bilayer.gpw')
-
-# --- get band structure along a path if you haven't already ---
-# If you already did a band_structure() before and saved it, you can skip this
 from ase.dft.kpoints import get_bandpath
-from ase.dft.band_structure import BandStructure
-points = {'M': [0.5, 0.0, 0.0],
-          'K': [1/3, 1/3, 0.0],
-          'G': [0.0, 0.0, 0.0]}
-path = ['M', 'K', 'G']
-path = get_bandpath(path, atoms.cell, npoints=20)#kpts, x, X = get_bandpath(path, atoms.cell, npoints=200)
-kpts = path.kpts
-x, X, labels = path.get_linear_kpoint_axis()
-
-
-#atoms, calc = restart('DFT.gpw')
-
-calc_bs = calc.fixed_density(
-    kpts=kpts,
-    symmetry='off',
-    txt='blg_bands_fixed_density.txt',
-)
+from ase.atoms import Atoms
+from gpaw.new.ase_interface import ASECalculator
+from ase.dft.kpoints import BandPath
+from typing import Tuple
+import os
 from ase.dft.kpoints import kpoint_convert
 
-bs = calc_bs.band_structure()
-kpts_cart = kpoint_convert(atoms.cell, skpts_kc=kpts)#bs.get_kpoints(cartesian=True)
-print(kpts_cart)
-# Energies and Fermi level
-E = bs.energies[0]        # shape: (Nk, Nbands)
-EF = calc_bs.get_fermi_level()
 
-# --- find π bands: 4 bands closest to EF ---
-# (2 π bands per layer → 4 for bilayer)
-dist = np.abs(E.mean(axis=0) - EF)   # distance of each band from EF
-idx_pi = np.argsort(dist)[:4]        # indices of π bands
+def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, kpts=None) -> None:
+    """
+    Save π-band energies derived from a DFT calculation and optionally prepare
+    them for further Tight-Binding (TB) fitting. This function evaluates the
+    energies of the four π bands closest to the Fermi energy from a band structure
+    calculation. The results include k-point coordinates, π-band energies, and
+    corresponding band indices, all shifted with respect to the Fermi level. The
+    data is saved to a `.npz` file for further use.
 
-print("π-band indices:", idx_pi)
+    :param atoms:
+        An `Atoms` object containing the atomic structure and associated
+        information such as the simulation cell.
 
-# Extract π-band energies (shifted so EF = 0)
-E_pi = E[:, idx_pi] - EF             # shape: (Nk, 4)
+    :param calc:
+        A calculator object implementing the ASE calculator interface.
+        It should be capable of performing DFT calculations and generating
+        the band structure.
 
-# Optionally save for TB fitting
-np.savez("pi_bands_from_gpaw.npz",
-         kpts=kpts_cart[:, :2],  # kx, ky
-         energies=E_pi,
-         band_indices=idx_pi,
-         EF=EF)
+    :param kpts:
+        Optional. Defines a set of k-points to be used; if not provided,
+        this will automatically be set based on the bandpath of the system.
+
+    :return:
+        None. Outputs from the band structure calculation are saved to a file
+        named `gpaw_pi_bands.npz`.
+    """
+    path = ['M', 'K', 'G']
+    bandpath: BandPath = get_bandpath(path, atoms.cell, npoints=20)#kpts, x, X = get_bandpath(path, atoms.cell, npoints=200)
+    kpts: np.ndarray = bandpath.kpts
+    x, X, labels = bandpath.get_linear_kpoint_axis()
+
+
+    #atoms, calc = restart('DFT.gpw')
+
+    calc_bs = calc.fixed_density(
+        kpts=kpts,
+        symmetry='off',
+        txt='blg_bands_fixed_density.txt',
+    )
+
+    bs = calc_bs.band_structure()
+    kpts_cart = kpoint_convert(atoms.cell, skpts_kc=kpts)#bs.get_kpoints(cartesian=True)
+    print(kpts_cart)
+    # Energies and Fermi level
+    E = bs.energies[0]        # shape: (Nk, Nbands)
+    EF = calc_bs.get_fermi_level()
+
+    # --- find π bands: 4 bands closest to EF ---
+    # (2 π bands per layer → 4 for bilayer)
+    dist = np.abs(E.mean(axis=0) - EF)   # distance of each band from EF
+    idx_pi = np.argsort(dist)[:4]        # indices of π bands
+
+    print("π-band indices:", idx_pi)
+
+    # Extract π-band energies (shifted so EF = 0)
+    E_pi = E[:, idx_pi] - EF             # shape: (Nk, 4)
+
+    # Optionally save for TB fitting
+    np.savez("../data/gpaw_pi_bands.npz",
+             kpts=kpts_cart[:, :2],  # kx, ky
+             energies=E_pi,
+             band_indices=idx_pi,
+             EF=EF)
+
+
+def load_pi_dft_bands() -> Tuple[np.ndarray, np.ndarray, np.ndarray, float]:
+    """
+    Loads the density functional theory (DFT) pi bands data from a specified file.
+
+    This function retrieves the k-points, energy values, band indices, and Fermi 
+    energy from a pre-saved file containing DFT pi band calculations. The data 
+    is loaded from a NumPy `.npz` file located at a fixed path.
+
+    :return: A tuple containing:
+        - kpts (numpy.ndarray): An array of k-points for the calculation.
+        - energies (numpy.ndarray): An array of energy values corresponding to
+          the k-points.
+        - band_indices (numpy.ndarray): An array containing indices of the bands.
+        - EF (float): The Fermi energy value.
+    """
+    file_path = "../data/gpaw_pi_bands.npz"
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"File {file_path} does not exist.")
+
+    data = np.load(file_path)
+    return data["kpts"], data["energies"], data["band_indices"], data["EF"]
