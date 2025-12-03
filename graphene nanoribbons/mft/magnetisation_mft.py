@@ -361,7 +361,7 @@ if __name__ == "__main__":
     # Ny = 4, 8, 16, ... larger Ny = wider ribbon (more 1D-like edges)
     Ny = 8
     t = 1.0
-    U = 6.0      # try 2.0, 2.5, 3.0 to see stronger magnetization
+    U = 3.3      # try 2.0, 2.5, 3.0 to see stronger magnetization
     Nk = 400
     filling = 1.0   # half-filling: 1 electron per site
 
@@ -377,7 +377,7 @@ if __name__ == "__main__":
         a=1.0,
         Nk=Nk,
         filling=filling,
-        max_iter=200,
+        max_iter=300,
         mix=0.1,
         tol=1e-5,
         verbose=True,
