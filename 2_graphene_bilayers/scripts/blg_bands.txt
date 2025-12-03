@@ -6,9 +6,9 @@
  |___|_|             
 
 User:   nico@NicosPC
-Date:   Tue Dec  2 12:41:50 2025
+Date:   Thu Nov 27 17:04:35 2025
 Arch:   x86_64
-Pid:    21283
+Pid:    28699
 CWD:    /mnt/c/Users/Torto/PycharmProjects/DFT_QMB/2_graphene_bilayers/scripts
 Python: 3.12.3
 gpaw:   /home/nico/gpaw-env/lib/python3.12/site-packages/gpaw
@@ -131,7 +131,7 @@ Hamiltonian:
 XC parameters: PBE with 2 nearest neighbor stencil
 
 Memory estimate:
-  Process memory now: 234.44 MiB
+  Process memory now: 157.73 MiB
   Calculator: 123.12 MiB
     Density: 10.14 MiB
       Arrays: 4.67 MiB
@@ -159,3 +159,14 @@ Bands to converge: occupied
 
 ... initialized
 
+Timing:           incl.     excl.
+----------------------------------------
+PWDescriptor:     0.059     0.059   0.0% |
+Redistribute:     0.000     0.000   0.0% |
+Set symmetry:     0.006     0.006   0.0% |
+Other:          287.251   287.251 100.0% |---------------------------------------|
+----------------------------------------
+Total:                    287.317 100.0%
+
+Memory usage: 492.64 MiB
+Date: Thu Nov 27 17:09:23 2025

@@ -1,0 +1,354 @@
+[33mcommit eb85fe1b1959db9b8432f0958e323dfd583218ac[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mrescue[m[33m, [m[1;32mmain[m[33m)[m
+Author: feder <federico.mastroforti@gmail.com>
+Date:   Wed Dec 3 12:38:53 2025 +0100
+
+    adding dft code for zig zag nanoribbon, already tested up to 02 file in the dft nanoribbon folder
+
+M	.idea/dft-qmb.iml
+M	.idea/misc.xml
+R096	graphene nanoribbons/old_dft_nanoribbons/00_build_and_relax.py	graphene nanoribbons/00_build_and_relax.py
+R100	graphene nanoribbons/old_dft_nanoribbons/01_spin_polarised_SCF.py	graphene nanoribbons/01_spin_polarised_SCF.py
+R100	graphene nanoribbons/old_dft_nanoribbons/02_bands.py	graphene nanoribbons/02_bands.py
+R100	graphene nanoribbons/old_dft_nanoribbons/03_dos.py	graphene nanoribbons/03_dos.py
+R100	graphene nanoribbons/old_dft_nanoribbons/chain_band.png	graphene nanoribbons/chain_band.png
+R100	graphene nanoribbons/old_dft_nanoribbons/chain_band.txt	graphene nanoribbons/chain_band.txt
+R100	graphene nanoribbons/old_dft_nanoribbons/chain_dos.png	graphene nanoribbons/chain_dos.png
+R100	graphene nanoribbons/old_dft_nanoribbons/chain_initial.traj	graphene nanoribbons/chain_initial.traj
+R100	graphene nanoribbons/old_dft_nanoribbons/chain_relaxed.gpw	graphene nanoribbons/chain_relaxed.gpw
+R100	graphene nanoribbons/old_dft_nanoribbons/chain_relaxed.traj	graphene nanoribbons/chain_relaxed.traj
+R100	graphene nanoribbons/old_dft_nanoribbons/chain_spin_AF_pbc.gpw	graphene nanoribbons/chain_spin_AF_pbc.gpw
+R100	graphene nanoribbons/old_dft_nanoribbons/chain_spin_AF_pbc.txt	graphene nanoribbons/chain_spin_AF_pbc.txt
+R100	graphene nanoribbons/old_dft_nanoribbons/chain_spin_FM_pbc.gpw	graphene nanoribbons/chain_spin_FM_pbc.gpw
+R100	graphene nanoribbons/old_dft_nanoribbons/chain_spin_FM_pbc.txt	graphene nanoribbons/chain_spin_FM_pbc.txt
+D	graphene nanoribbons/dft nanoribbon/01_build_zgnr.py
+D	graphene nanoribbons/dft nanoribbon/02_scf_zgnr.py
+D	graphene nanoribbons/dft nanoribbon/03_bands_and_magnetization.py
+D	graphene nanoribbons/dft nanoribbon/zgnr_Ny8_M1_ribbon.traj
+D	graphene nanoribbons/dft nanoribbon/zgnr_scf.gpw
+D	graphene nanoribbons/dft nanoribbon/zgnr_scf.txt
+M	graphene nanoribbons/mft/magnetisation_mft.py
+R100	graphene nanoribbons/old_dft_nanoribbons/relax.log	graphene nanoribbons/relax.log
+R100	graphene nanoribbons/old_dft_nanoribbons/relax.txt	graphene nanoribbons/relax.txt
+R100	graphene nanoribbons/old_dft_nanoribbons/visualiser.py	graphene nanoribbons/visualiser.py
+R100	graphene nanoribbons/old_dft_nanoribbons/visualiser_a.py	graphene nanoribbons/visualiser_a.py
+
+[33mcommit 7b5fc26684dc0caf390e423b16ed61be3b3ccabe[m
+Merge: 81043ed a3f13c7
+Author: feder <federico.mastroforti@gmail.com>
+Date:   Wed Dec 3 12:11:56 2025 +0100
+
+    adding dft code for zig zag nanoribbon, already tested up to 02 file in the dft nanoribbon folder
+
+[33mcommit 81043ed5b64a867ddaa77a222bc4e4fb6721ef81[m
+Author: feder <federico.mastroforti@gmail.com>
+Date:   Wed Dec 3 12:11:54 2025 +0100
+
+    adding dft code for zig zag nanoribbon, already tested up to 02 file in the dft nanoribbon folder
+
+A	graphene nanoribbons/dft nanoribbon/zgnr_Ny8_M1_ribbon.traj
+A	graphene nanoribbons/dft nanoribbon/zgnr_scf.gpw
+A	graphene nanoribbons/dft nanoribbon/zgnr_scf.txt
+
+[33mcommit e9a4c02621a23d04e9468376633c9eccd2acde09[m
+Author: feder <federico.mastroforti@gmail.com>
+Date:   Wed Dec 3 12:10:38 2025 +0100
+
+    adding dft code for zig zag nanoribbon, already tested up to 02 file in the dft nanoribbon folder
+
+A	graphene nanoribbons/dft nanoribbon/01_build_zgnr.py
+A	graphene nanoribbons/dft nanoribbon/02_scf_zgnr.py
+A	graphene nanoribbons/dft nanoribbon/03_bands_and_magnetization.py
+M	graphene nanoribbons/mft/magnetisation_mft.py
+R096	graphene nanoribbons/00_build_and_relax.py	graphene nanoribbons/old_dft_nanoribbons/00_build_and_relax.py
+R100	graphene nanoribbons/01_spin_polarised_SCF.py	graphene nanoribbons/old_dft_nanoribbons/01_spin_polarised_SCF.py
+R100	graphene nanoribbons/02_bands.py	graphene nanoribbons/old_dft_nanoribbons/02_bands.py
+R100	graphene nanoribbons/03_dos.py	graphene nanoribbons/old_dft_nanoribbons/03_dos.py
+R100	graphene nanoribbons/chain_band.png	graphene nanoribbons/old_dft_nanoribbons/chain_band.png
+R100	graphene nanoribbons/chain_band.txt	graphene nanoribbons/old_dft_nanoribbons/chain_band.txt
+R100	graphene nanoribbons/chain_dos.png	graphene nanoribbons/old_dft_nanoribbons/chain_dos.png
+R100	graphene nanoribbons/chain_initial.traj	graphene nanoribbons/old_dft_nanoribbons/chain_initial.traj
+R100	graphene nanoribbons/chain_relaxed.gpw	graphene nanoribbons/old_dft_nanoribbons/chain_relaxed.gpw
+R100	graphene nanoribbons/chain_relaxed.traj	graphene nanoribbons/old_dft_nanoribbons/chain_relaxed.traj
+R100	graphene nanoribbons/chain_spin_AF_pbc.gpw	graphene nanoribbons/old_dft_nanoribbons/chain_spin_AF_pbc.gpw
+R100	graphene nanoribbons/chain_spin_AF_pbc.txt	graphene nanoribbons/old_dft_nanoribbons/chain_spin_AF_pbc.txt
+R100	graphene nanoribbons/chain_spin_FM_pbc.gpw	graphene nanoribbons/old_dft_nanoribbons/chain_spin_FM_pbc.gpw
+R100	graphene nanoribbons/chain_spin_FM_pbc.txt	graphene nanoribbons/old_dft_nanoribbons/chain_spin_FM_pbc.txt
+R100	graphene nanoribbons/relax.log	graphene nanoribbons/old_dft_nanoribbons/relax.log
+R100	graphene nanoribbons/relax.txt	graphene nanoribbons/old_dft_nanoribbons/relax.txt
+R100	graphene nanoribbons/visualiser.py	graphene nanoribbons/old_dft_nanoribbons/visualiser.py
+R100	graphene nanoribbons/visualiser_a.py	graphene nanoribbons/old_dft_nanoribbons/visualiser_a.py
+
+[33mcommit a3f13c7087b28d322b576de0d5c34b1ea174c638[m
+Merge: d9747cc b74d36e
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Tue Dec 2 00:34:38 2025 +0100
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit d9747cc71075a30817b7312859b95fbfbbd8a90b[m
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Tue Dec 2 00:34:22 2025 +0100
+
+    Added nanoribbons
+
+M	.idea/dft-qmb.iml
+M	.idea/misc.xml
+M	2_graphene_bilayers/scripts/graphene_bilayer_gs.txt
+A	3_graphene_nanoribbons/01_grapene_nanoribbons_relax.ipynb
+A	3_graphene_nanoribbons/01_graphene_nanoribbons_relax_parallel.py
+A	3_graphene_nanoribbons/02_graphene_nanoribbons_bands_dos.ipynb
+A	3_graphene_nanoribbons/bands.txt
+A	3_graphene_nanoribbons/bands_fixed.txt
+A	3_graphene_nanoribbons/bands_fixed_density.txt
+A	3_graphene_nanoribbons/bands_test.py
+A	3_graphene_nanoribbons/gnr_relax.traj
+A	3_graphene_nanoribbons/gnr_relax.txt
+A	3_graphene_nanoribbons/gnr_relax.xyz
+A	3_graphene_nanoribbons/gnr_relaxed.gpaw
+A	3_graphene_nanoribbons/gnr_scf_pw.txt
+
+[33mcommit b74d36e3dd43fe401f346714a2f34bc5a948af53[m
+Author: feder <federico.mastroforti@gmail.com>
+Date:   Mon Dec 1 22:54:32 2025 +0100
+
+    adding the working magnetisation file in teh case of tight binding in mft approximation
+
+A	graphene nanoribbons/mft/bands_Ny20_U2.00.png
+A	graphene nanoribbons/mft/bands_Ny2_U2.00.png
+A	graphene nanoribbons/mft/bands_Ny8_U1.00.png
+A	graphene nanoribbons/mft/bands_Ny8_U2.00.png
+A	graphene nanoribbons/mft/bands_Ny8_U6.00.png
+A	graphene nanoribbons/mft/dos_Ny20_U2.00.png
+A	graphene nanoribbons/mft/dos_Ny2_U2.00.png
+A	graphene nanoribbons/mft/dos_Ny8_U1.00.png
+A	graphene nanoribbons/mft/dos_Ny8_U2.00.png
+A	graphene nanoribbons/mft/dos_Ny8_U6.00.png
+A	graphene nanoribbons/mft/mag_profile_Ny20_U2.00.png
+A	graphene nanoribbons/mft/mag_profile_Ny2_U2.00.png
+A	graphene nanoribbons/mft/mag_profile_Ny8_U1.00.png
+A	graphene nanoribbons/mft/mag_profile_Ny8_U2.00.png
+A	graphene nanoribbons/mft/mag_profile_Ny8_U6.00.png
+A	graphene nanoribbons/mft/magnetisation_mft.py
+
+[33mcommit 9b595f60e4f123e0b435bb919b3be1b1fda59465[m
+Merge: 41d53bf 597c602
+Author: feder <federico.mastroforti@gmail.com>
+Date:   Mon Dec 1 16:25:02 2025 +0100
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       .idea/dft-qmb.iml
+    #       .idea/misc.xml
+
+[33mcommit 41d53bf4fa5cba2cbd3d8e53191053be000f18d8[m
+Author: feder <federico.mastroforti@gmail.com>
+Date:   Mon Dec 1 16:24:19 2025 +0100
+
+    Added graphene nanoribbons, non interacting case and dft for single strand
+
+M	.idea/dft-qmb.iml
+M	.idea/misc.xml
+M	1_graphene/outputs/graphene_relax.log
+M	1_graphene/outputs/graphene_relax.traj
+M	1_graphene/outputs/graphene_relax_data.txt
+M	1_graphene/scripts/graphene_relax.txt
+M	1_graphene/scripts/graphene_relaxed.gpw
+A	graphene nanoribbons/00_build_and_relax.py
+A	graphene nanoribbons/01_spin_polarised_SCF.py
+A	graphene nanoribbons/02_bands.py
+A	graphene nanoribbons/03_dos.py
+A	graphene nanoribbons/2nanoribbons/00_build_and_relax.py
+A	graphene nanoribbons/2nanoribbons/02_bands.py
+A	graphene nanoribbons/2nanoribbons/03_plot_bands.py
+A	graphene nanoribbons/2nanoribbons/chain_band.txt
+A	graphene nanoribbons/2nanoribbons/chain_bands_raw.npz
+A	graphene nanoribbons/2nanoribbons/chain_spin_AF_pbc.gpw
+A	graphene nanoribbons/chain_band.png
+A	graphene nanoribbons/chain_band.txt
+A	graphene nanoribbons/chain_dos.png
+A	graphene nanoribbons/chain_initial.traj
+A	graphene nanoribbons/chain_relaxed.gpw
+A	graphene nanoribbons/chain_relaxed.traj
+A	graphene nanoribbons/chain_spin_AF_pbc.gpw
+A	graphene nanoribbons/chain_spin_AF_pbc.txt
+A	graphene nanoribbons/chain_spin_FM_pbc.gpw
+A	graphene nanoribbons/chain_spin_FM_pbc.txt
+A	graphene nanoribbons/non interacting/dos_non_interacting.py
+A	graphene nanoribbons/non interacting/hubbard_non_interactin.py
+A	graphene nanoribbons/relax.log
+A	graphene nanoribbons/relax.txt
+A	graphene nanoribbons/visualiser.py
+A	graphene nanoribbons/visualiser_a.py
+
+[33mcommit 597c602265e926de9a82ce7313d1b5f8579d3f31[m
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Mon Dec 1 16:19:50 2025 +0100
+
+    Bilayer.
+
+A	2_graphene_bilayers/outputs/bilayer_bands_raw.npz
+A	2_graphene_bilayers/outputs/graphene_bands_data.txt
+A	2_graphene_bilayers/outputs/graphene_bilayer_bandstructure.png
+A	2_graphene_bilayers/scripts/bandstructure_AB.json
+A	2_graphene_bilayers/scripts/graphene_bilayer_gs.gpw
+A	2_graphene_bilayers/scripts/graphene_bilayer_gs.txt
+
+[33mcommit 16a8195ec4c41b40542c3ea29efbb4da6830e369[m
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Mon Dec 1 16:19:46 2025 +0100
+
+    Bilayer.
+
+A	2_graphene_bilayers/scripts/1a_view_setup.ipynb
+M	2_graphene_bilayers/scripts/1a_view_setup.py
+
+[33mcommit aa70a63f74bc49cf0c717a57b48b708507ad42f5[m
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Sat Nov 29 10:38:40 2025 +0100
+
+    Bilayer.
+
+M	.idea/dft-qmb.iml
+M	.idea/misc.xml
+D	2_graphene_bilayers/scripts/02_graphene_bilayer_bands.py
+A	2_graphene_bilayers/scripts/1_graphene_bilayer_ab.py
+A	2_graphene_bilayers/scripts/1a_view_setup.py
+A	2_graphene_bilayers/scripts/1b_plot_graphene_bilayer_ab_bs.py
+A	2_graphene_bilayers/scripts/2_graphene_bilayer_bands.py
+A	2_graphene_bilayers/scripts/2a_plot_bilayer_bands.py
+M	2_graphene_bilayers/scripts/blg_bands.txt
+M	2_graphene_bilayers/scripts/blg_bands_fixed_density.txt
+M	README.md
+
+[33mcommit ee42752a72ec71ef9baf3cea8406d6d3fccb66b6[m
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Thu Nov 27 14:39:39 2025 +0100
+
+    Bilayer.
+
+M	.idea/dft-qmb.iml
+M	.idea/misc.xml
+A	2_graphene_bilayers/scripts/01_graphene_bilayer.py
+A	2_graphene_bilayers/scripts/02_graphene_bilayer_bands.py
+A	2_graphene_bilayers/scripts/blg_bands.txt
+A	2_graphene_bilayers/scripts/blg_bands_fixed_density.txt
+A	2_graphene_bilayers/scripts/blg_bandstructure.png
+A	2_graphene_bilayers/scripts/blg_scf.gpw
+A	2_graphene_bilayers/scripts/blg_scf.txt
+
+[33mcommit 13a214a4eab36f3708ebc2c9b8ba3aecf3723a09[m
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Wed Nov 26 20:43:16 2025 +0100
+
+    Small fixes.
+
+M	1_graphene/outputs/graphene_dos.dat
+M	1_graphene/outputs/graphene_dos.png
+A	1_graphene/outputs/graphene_relax.log
+A	1_graphene/outputs/graphene_relax_data.txt
+A	1_graphene/outputs/graphene_scf_data.txt
+M	1_graphene/scripts/4_graphene_dos.py
+A	1_graphene/scripts/graphene_bands.txt
+A	1_graphene/scripts/graphene_relax.traj
+A	1_graphene/scripts/graphene_relax.txt
+A	1_graphene/scripts/graphene_relaxed.gpw
+A	1_graphene/scripts/graphene_scf.gpw
+A	1_graphene/scripts/graphene_scf.txt
+A	1_graphene/scripts/relax.log
+
+[33mcommit b2678a546eb63dae579cc4bcd0973c51b00868c9[m
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Tue Nov 25 22:12:42 2025 +0100
+
+    Small fixes.
+
+A	1_graphene/outputs/graphene_bands_data.txt
+M	1_graphene/outputs/graphene_bandstructure.png
+M	1_graphene/outputs/graphene_dos.png
+M	1_graphene/scripts/1_graphene_relaxation.py
+M	1_graphene/scripts/1a_plot_relaxation_energy.py
+M	1_graphene/scripts/2_graphene_scf.py
+M	1_graphene/scripts/3_graphene_bandstructure.py
+M	1_graphene/scripts/3a_plot_bands.py
+M	1_graphene/scripts/4_graphene_dos.py
+M	1_graphene/scripts/4a_plot_dos.py
+A	plotstyle.py
+
+[33mcommit d27b74e276a679a18da827e9201ebc43c94203e1[m
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Sun Nov 23 16:20:38 2025 +0100
+
+    Added DOS, pDOS.
+
+A	1_graphene/outputs/graphene_dos.dat
+A	1_graphene/outputs/graphene_dos.png
+A	1_graphene/outputs/graphene_pdos.png
+A	1_graphene/outputs/graphene_pdos_bands.png
+A	1_graphene/outputs/graphene_pdos_orbitals.png
+A	1_graphene/outputs/graphene_pdos_p_total.dat
+A	1_graphene/outputs/graphene_pdos_p_x.dat
+A	1_graphene/outputs/graphene_pdos_p_y.dat
+A	1_graphene/outputs/graphene_pdos_p_z.dat
+A	1_graphene/outputs/graphene_pdos_pi.dat
+A	1_graphene/outputs/graphene_pdos_pi_sigma.png
+A	1_graphene/outputs/graphene_pdos_s.dat
+A	1_graphene/outputs/graphene_pdos_sigma.dat
+A	1_graphene/outputs/pdos_atom0_d.dat
+A	1_graphene/outputs/pdos_atom0_p.dat
+A	1_graphene/outputs/pdos_atom0_s.dat
+A	1_graphene/outputs/pdos_atom1_d.dat
+A	1_graphene/outputs/pdos_atom1_p.dat
+A	1_graphene/outputs/pdos_atom1_s.dat
+A	1_graphene/scripts/4_graphene_dos.py
+A	1_graphene/scripts/4a_plot_dos.py
+A	1_graphene/scripts/5_pdos.py
+A	1_graphene/scripts/5a_plot_pdos.py
+
+[33mcommit 307c4a6bba5bd7d75b941afd3702854926bd3792[m
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Sun Nov 23 12:46:54 2025 +0100
+
+    Restructured folders, adding outputs folder.
+
+R100	scripts/1_graphene/CRASH	1_graphene/outputs/CRASH
+R100	scripts/1_graphene/N2Cu.traj	1_graphene/outputs/N2Cu.traj
+R100	scripts/1_graphene/binding_curve.traj	1_graphene/outputs/binding_curve.traj
+R100	scripts/1_graphene/espresso.err	1_graphene/outputs/espresso.err
+R100	scripts/1_graphene/espresso.pwi	1_graphene/outputs/espresso.pwi
+R100	scripts/1_graphene/espresso.pwo	1_graphene/outputs/espresso.pwo
+R100	scripts/1_graphene/gpaw.txt	1_graphene/outputs/gpaw.txt
+R100	scripts/1_graphene/graphene_bands.txt	1_graphene/outputs/graphene_bands.txt
+A	1_graphene/outputs/graphene_bands_raw.npz
+R100	scripts/1_graphene/graphene_bandstructure.png	1_graphene/outputs/graphene_bandstructure.png
+R100	scripts/1_graphene/graphene_lda_scf.gpw	1_graphene/outputs/graphene_lda_scf.gpw
+R100	scripts/1_graphene/graphene_lda_scf.txt	1_graphene/outputs/graphene_lda_scf.txt
+A	1_graphene/outputs/graphene_relax.traj
+A	1_graphene/outputs/graphene_relax.txt
+A	1_graphene/outputs/graphene_relaxed.gpw
+R100	scripts/1_graphene/graphene_scf.gpw	1_graphene/outputs/graphene_scf.gpw
+R100	scripts/1_graphene/graphene_scf.txt	1_graphene/outputs/graphene_scf.txt
+R100	scripts/1_graphene/h.txt	1_graphene/outputs/h.txt
+R100	scripts/1_graphene/h2.txt	1_graphene/outputs/h2.txt
+A	1_graphene/outputs/relax.log
+R100	scripts/1_graphene/0_test_parallel.py	1_graphene/scripts/0_test_parallel.py
+R095	scripts/1_graphene/1_graphene_relaxation.py	1_graphene/scripts/1_graphene_relaxation.py
+R084	scripts/1_graphene/1a_plot_relaxation_energy.py	1_graphene/scripts/1a_plot_relaxation_energy.py
+R095	scripts/1_graphene/2_graphene_scf.py	1_graphene/scripts/2_graphene_scf.py
+R097	scripts/1_graphene/display_density.py	1_graphene/scripts/2a_display_density.py
+R094	scripts/1_graphene/3_graphene_bandstructure.py	1_graphene/scripts/3_graphene_bandstructure.py
+A	1_graphene/scripts/3_graphene_bandstructure_mpi.py
+R089	scripts/1_graphene/3a_plot_bands.py	1_graphene/scripts/3a_plot_bands.py
+R100	visualizers/graphene_density.cube	1_graphene/visualizers/graphene_density.cube
+R095	visualizers/plot_density.py	1_graphene/visualizers/plot_density.py
+D	scripts/1_graphene/3_graphene_bandstructure_mpi.py
+D	scripts/1_graphene/dft_test.py
+
+[33mcommit 31bcd28df898c8763963df44821870b43b17267a[m
+Author: NexganGH <tortoricinico@outlook.it>
+Date:   Sun Nov 23 12:36:53 2025 +0100
+
+    Relaxation, SCF, plot bands.
+
+M	.idea/dft-qmb.iml
+M	.idea/misc.
