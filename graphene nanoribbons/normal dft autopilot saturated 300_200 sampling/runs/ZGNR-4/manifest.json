@@ -1,0 +1,29 @@
+{
+  "width": 4,
+  "label_base": "zgnr4_nonmag",
+  "files": {
+    "gpw": "runs/ZGNR-4/zgnr4_nonmag_relaxed.gpw",
+    "dft_bands_dos_npz": "runs/ZGNR-4/zgnr4_nonmag_bands_dos.npz",
+    "pi_npz": "runs/ZGNR-4/zgnr4_nonmag_pi_bands.npz"
+  },
+  "fits": {
+    "full_pi": {
+      "t": -1.4758751358756048,
+      "dE": -0.03361008352938179,
+      "rmse": 1.0062886261882522,
+      "success": true,
+      "message": "Optimization terminated successfully."
+    },
+    "central_only": {
+      "t": -4.799355468750002,
+      "dE": 0.0,
+      "rmse": 0.3956731342897842,
+      "central_indices": [
+        3,
+        4
+      ],
+      "success": true,
+      "message": "Optimization terminated successfully."
+    }
+  }
+}
