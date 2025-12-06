@@ -8,15 +8,10 @@ from typing import Tuple
 import os
 from ase.dft.kpoints import kpoint_convert
 
-def get_zoom_k_bands(cell, special_point, delta=0.1, npoints=50):
-    """Return an ASE BandPath that zooms around a symmetry point."""
-    k0 = special_point
-    kpts = [k0 - delta, k0 + delta]
 
-    bp = BandPath(kpts, cell=cell, npoints=npoints)
-    return bp
-
-def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=None, npoints=50, zoom_label=None, zoom_distance=0.5) -> None:
+def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=None,
+                      npoints=50, zoom_label=None, zoom_distance=0.5,
+                      filename="../data/gpaw_pi_bands.npz") -> None:
     """
     Save π-band energies derived from a DFT calculation and optionally prepare
     them for further Tight-Binding (TB) fitting. This function evaluates the
@@ -44,9 +39,11 @@ def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=None, npoints=50, 
     :param npoints:
         Optional. Number of the k-points to be used.
 
+    :param filename:
+        Optional. Path to the output .npz file. Defaults to "../data/gpaw_pi_bands.npz"
+
     :return:
-        None. Outputs from the band structure calculation are saved to a file
-        named `gpaw_pi_bands.npz`.
+        None. Outputs from the band structure calculation are saved to the specified file.
     """
     if path is None:
         path = ['G', 'M', 'K', 'G']
@@ -94,7 +91,7 @@ def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=None, npoints=50, 
     E_pi = E[:, idx_pi] - EF             # shape: (Nk, 4)
 
     # Optionally save for TB fitting
-    np.savez("../data/gpaw_pi_bands.npz",
+    np.savez(filename,
              kpts=kpts_cart[:, :2],  # kx, ky
              energies=E_pi,
              band_indices=idx_pi,
