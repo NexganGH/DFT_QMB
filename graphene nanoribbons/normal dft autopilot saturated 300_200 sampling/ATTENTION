@@ -1,0 +1,12 @@
+The code in thsi folder rely in a file named "config_zgnr.py"
+
+which is in the folder "normal dft saturated"
+This file is imported from this directory.
+
+However this directory has changed name in the present one, but the including was done
+when the original name of the folder was "normal dft" so if you have porbelms in finding the
+the file when running the code in this folder si because of this change of name.
+
+However i should have changed the path into the new named folder so you should have no problem
+
+
