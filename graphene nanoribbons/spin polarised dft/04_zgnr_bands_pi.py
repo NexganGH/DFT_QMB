@@ -2,7 +2,7 @@
 #
 # Band structure of ZGNR along the periodic z direction.
 # Uses explicit k-point list along z (Gamma->BZ boundary),
-# no ASE "path strings" like 'GZ', so no KeyError 'Z'.
+# no ASE "path strings" like 'GZ'.
 
 from gpaw import GPAW
 import numpy as np
@@ -20,16 +20,12 @@ def main():
     print("Cell:", atoms.cell, "\n")
 
     # --- 2. Build explicit 1D k-grid along z ---
-    #
-    # Fractional k_z from 0 to 0.5 (Gamma -> BZ boundary).
-    # kpts are given in fractional coords (kx, ky, kz).
-    #
     nkpts = cfg.npoints_kpath
-    k_frac = np.linspace(0.0, 0.5, nkpts)
+    k_frac = np.linspace(0.0, 0.5, nkpts)   # fractional kz: 0 → Γ, 0.5 → Z
     kpts = np.zeros((nkpts, 3))
-    kpts[:, 2] = k_frac  # vary only along z
+    kpts[:, 2] = k_frac
 
-    print(f"Using {nkpts} k-points along z (fractional kz 0 -> 0.5)")
+    print(f"Using {nkpts} k-points along z (fractional kz 0 → 0.5)")
 
     # --- 3. Non-selfconsistent band calculation with fixed density ---
     bs_calc = gs_calc.fixed_density(
@@ -39,35 +35,29 @@ def main():
         txt='zgnr_bands.txt'
     )
 
-    # --- 4. Collect eigenvalues into array E[spin, k, band] ---
+    # --- 4. Collect eigenvalues E[spin, k, band] ---
     nspins = bs_calc.wfs.nspins
     nbands = cfg.nbands_bands
 
     energies = np.zeros((nspins, nkpts, nbands), dtype=float)
-
     for s in range(nspins):
         for ik in range(nkpts):
             energies[s, ik, :] = bs_calc.get_eigenvalues(kpt=ik, spin=s)
 
-    # Fermi level from the *ground-state* calc is fine
+    # Fermi level from ground-state calc
     efermi = gs_calc.get_fermi_level()
     E_rel = energies - efermi
 
     print(f"nspins = {nspins}, nkpts = {nkpts}, nbands = {nbands}")
     print(f"Fermi level (eV): {efermi:.6f}")
 
-    # --- 5. Build k-axis for plotting ---
-    #
-    # Fractional kz = k_frac in [0, 0.5].
-    # Physical k = (2π/a) * kz; dimensionless ka = k * a = 2π * kz.
-    # So ka ∈ [0, π]. It's nice to plot ka/π ∈ [0, 1].
-    #
-    k_dimless = 2.0 * np.pi * k_frac       # k*a in [0, π]
-    k_plot = k_dimless / np.pi            # from 0 to 1
+    # --- 5. k-axis for plotting: ka/π in [0,1] ---
+    k_dimless = 2.0 * np.pi * k_frac     # ka in [0, π]
+    k_plot = k_dimless / np.pi           # ka/π in [0, 1]
     X_ticks = [0.0, 1.0]
     X_labels = [r'$\Gamma$', r'$Z$']
 
-    # --- 6. Plot FULL bands ---
+    # --- 6. Plot all bands ---
     plt.figure(figsize=(5, 6))
     for s in range(nspins):
         for n in range(nbands):
@@ -82,12 +72,11 @@ def main():
     plt.close()
     print(f"Saved full band plot to '{cfg.bands_full_png}'")
 
-    # --- 7. Select π-like bands in window around EF ---
+    # --- 7. Select π-like bands in energy window ---
     E_min_pi = cfg.E_min_pi
     E_max_pi = cfg.E_max_pi
 
-    print(f"Selecting bands entering [{E_min_pi}, {E_max_pi}] eV relative to EF.")
-
+    print(f"Selecting bands entering [{E_min_pi}, {E_max_pi}] eV around EF.")
     pi_band_indices_per_spin = []
 
     for s in range(nspins):
@@ -96,9 +85,8 @@ def main():
         pi_band_indices_per_spin.append(band_indices)
         print(f"Spin {s}: π-like band indices = {band_indices}")
 
-    # --- 8. Plot ONLY π-like bands ---
+    # --- 8. Plot only π-like bands ---
     plt.figure(figsize=(5, 6))
-
     colors = ['gold', 'royalblue']
     spin_labels = ['spin up', 'spin down']
 
@@ -126,7 +114,7 @@ def main():
     plt.close()
     print(f"Saved π-band plot to '{cfg.bands_pi_png}'")
 
-    # --- 9. Save all band data for post-processing & TB fitting ---
+    # --- 9. Save all band data for post-processing ---
     bands_up = np.array(pi_band_indices_per_spin[0], dtype=int)
     if nspins > 1:
         bands_dn = np.array(pi_band_indices_per_spin[1], dtype=int)
@@ -135,11 +123,11 @@ def main():
 
     np.savez(
         cfg.bands_pi_npz,
-        k_frac=k_frac,          # fractional kz ∈ [0, 0.5]
-        k_dimless=k_dimless,    # k*a ∈ [0, π]
-        k_plot=k_plot,          # k*a/π ∈ [0, 1]
-        energies=energies,      # absolute KS energies
-        E_rel=E_rel,            # relative to EF
+        k_frac=k_frac,
+        k_dimless=k_dimless,
+        k_plot=k_plot,
+        energies=energies,
+        E_rel=E_rel,
         efermi=efermi,
         bands_up=bands_up,
         bands_dn=bands_dn

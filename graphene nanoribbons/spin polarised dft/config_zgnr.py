@@ -49,3 +49,8 @@ mag_AB_png        = f"zgnr_Ny{Ny}_M{M}_mag_AB_strands.png"
 bands_pi_npz      = f"zgnr_Ny{Ny}_M{M}_bands_pi.npz"
 bands_pi_png      = f"zgnr_Ny{Ny}_M{M}_bands_pi.png"
 bands_full_png    = f"zgnr_Ny{Ny}_M{M}_bands_full.png"
+
+# --- Fit TB+MF ai bands centrali DFT ---
+tb_fit_npz       = f"zgnr_Ny{Ny}_M{M}_tb_fit.npz"
+tb_fit_bands_png = f"zgnr_Ny{Ny}_M{M}_tb_fit_bands.png"
+tb_fit_mag_png   = f"zgnr_Ny{Ny}_M{M}_tb_fit_mag.png"

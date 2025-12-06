@@ -6,9 +6,9 @@
  |___|_|             
 
 User:   feddex@Feddexpc
-Date:   Sat Dec  6 14:49:11 2025
+Date:   Sat Dec  6 15:51:47 2025
 Arch:   x86_64
-Pid:    812397
+Pid:    825300
 CWD:    /mnt/c/Users/feder/PycharmProjects/DFT_QMB/graphene nanoribbons/spin polarised dft
 Python: 3.13.9
 gpaw:   /home/feddex/gpaw-env/lib/python3.13/site-packages/gpaw
@@ -180,7 +180,7 @@ Hamiltonian:
 XC parameters: PBE with 2 nearest neighbor stencil
 
 Memory estimate:
-  Process memory now: 338.33 MiB
+  Process memory now: 337.71 MiB
   Calculator: 215.93 MiB
     Density: 70.84 MiB
       Arrays: 46.99 MiB
@@ -254,9 +254,9 @@ Effective grid spacing dv^(1/3) = 0.2009
 
      iter     time        total  log10-change:  magmom
                          energy   eigst   dens
-iter:   1 14:49:20   -77.747624        c      c   +0.0000
-iter:   2 14:49:24   -77.747624        c      c   +0.0000
-iter:   3 14:49:29   -77.747624c       c      c   +0.0000
+iter:   1 15:51:57   -77.747624        c      c   +0.0000
+iter:   2 15:52:04   -77.747624        c      c   +0.0000
+iter:   3 15:52:08   -77.747624c       c      c   +0.0000
 
 Converged after 3 iterations.
 
@@ -314,40 +314,40 @@ Transition at: (s=1, k=166, n=16, [0.00, 0.00, 0.42])
 Timing:                              incl.     excl.
 -----------------------------------------------------------
 Basic WFS set positions:             0.000     0.000   0.0% |
-Basis functions set positions:       0.027     0.027   0.1% |
-LCAO WFS Initialize:                 0.872     0.038   0.2% |
- Hamiltonian:                        0.834     0.004   0.0% |
-  Atomic:                            0.145     0.001   0.0% |
-   XC Correction:                    0.145     0.145   0.8% |
+Basis functions set positions:       0.025     0.025   0.1% |
+LCAO WFS Initialize:                 0.787     0.032   0.2% |
+ Hamiltonian:                        0.755     0.004   0.0% |
+  Atomic:                            0.128     0.001   0.0% |
+   XC Correction:                    0.127     0.127   0.6% |
   Calculate atomic Hamiltonians:     0.001     0.001   0.0% |
   Communicate:                       0.000     0.000   0.0% |
-  Hartree integrate/restrict:        0.024     0.024   0.1% |
+  Hartree integrate/restrict:        0.021     0.021   0.1% |
   Initialize Hamiltonian:            0.000     0.000   0.0% |
-  Poisson:                           0.183     0.008   0.0% |
+  Poisson:                           0.167     0.008   0.0% |
    Communicate from 1D:              0.014     0.014   0.1% |
-   Communicate from 2D:              0.015     0.015   0.1% |
-   Communicate to 1D:                0.012     0.012   0.1% |
+   Communicate from 2D:              0.014     0.014   0.1% |
+   Communicate to 1D:                0.011     0.011   0.0% |
    Communicate to 2D:                0.016     0.016   0.1% |
-   FFT 1D:                           0.069     0.069   0.4% |
-   FFT 2D:                           0.046     0.046   0.3% |
-  XC 3D grid:                        0.468     0.468   2.6% ||
-  vbar:                              0.009     0.009   0.0% |
-P tci:                               1.396     1.396   7.7% |--|
-SCF-cycle:                          13.910     0.056   0.3% |
- LCAO eigensolver:                  13.855     0.093   0.5% |
-  Calculate projections:             0.444     0.444   2.4% ||
-  DenseAtomicCorrection:             1.351     1.351   7.4% |--|
-  Distribute overlap matrix:         0.090     0.090   0.5% |
-  Orbital Layouts:                   6.008     6.008  33.1% |------------|
-  Potential matrix:                  1.153     1.153   6.4% |--|
-  Sum over cells:                    4.715     4.715  26.0% |---------|
-ST tci:                              0.242     0.242   1.3% ||
+   FFT 1D:                           0.059     0.059   0.3% |
+   FFT 2D:                           0.046     0.046   0.2% |
+  XC 3D grid:                        0.424     0.424   2.0% ||
+  vbar:                              0.010     0.010   0.0% |
+P tci:                               1.354     1.354   6.4% |--|
+SCF-cycle:                          17.058     0.083   0.4% |
+ LCAO eigensolver:                  16.975     0.118   0.6% |
+  Calculate projections:             0.639     0.639   3.0% ||
+  DenseAtomicCorrection:             1.669     1.669   7.9% |--|
+  Distribute overlap matrix:         0.091     0.091   0.4% |
+  Orbital Layouts:                   7.950     7.950  37.5% |--------------|
+  Potential matrix:                  1.256     1.256   5.9% |-|
+  Sum over cells:                    5.251     5.251  24.7% |---------|
+ST tci:                              0.210     0.210   1.0% |
 Set symmetry:                        0.000     0.000   0.0% |
-TCI: Evaluate splines:               0.046     0.046   0.3% |
-mktci:                               0.004     0.004   0.0% |
-Other:                               1.662     1.662   9.2% |---|
+TCI: Evaluate splines:               0.043     0.043   0.2% |
+mktci:                               0.007     0.007   0.0% |
+Other:                               1.742     1.742   8.2% |--|
 -----------------------------------------------------------
-Total:                                        18.159 100.0%
+Total:                                        21.226 100.0%
 
-Memory usage: 652.26 MiB
-Date: Sat Dec  6 14:49:30 2025
+Memory usage: 650.50 MiB
+Date: Sat Dec  6 15:52:09 2025
