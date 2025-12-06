@@ -9,7 +9,7 @@ def run_dft_ab(filename='DFT.gpw') -> None:
     :param filename: GPW Filename
     :return: None
     """
-    path = '../' + filename
+    path = '../gpw/' + filename
     if os.path.isfile(path):
         raise 'Specified already exists! Delete it or change filename'
 

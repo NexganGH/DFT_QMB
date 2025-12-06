@@ -8,8 +8,15 @@ from typing import Tuple
 import os
 from ase.dft.kpoints import kpoint_convert
 
+def get_zoom_k_bands(cell, special_point, delta=0.1, npoints=50):
+    """Return an ASE BandPath that zooms around a symmetry point."""
+    k0 = special_point
+    kpts = [k0 - delta, k0 + delta]
 
-def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=['G', 'M', 'K', 'G'], kpts=None) -> None:
+    bp = BandPath(kpts, cell=cell, npoints=npoints)
+    return bp
+
+def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=None, npoints=50, zoom_label=None, zoom_distance=0.5) -> None:
     """
     Save π-band energies derived from a DFT calculation and optionally prepare
     them for further Tight-Binding (TB) fitting. This function evaluates the
@@ -18,6 +25,9 @@ def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=['G', 'M', 'K', 'G
     corresponding band indices, all shifted with respect to the Fermi level. The
     data is saved to a `.npz` file for further use.
 
+    :param path:
+    :param zoom_distance:
+    :param zoom_label:
     :param atoms:
         An `Atoms` object containing the atomic structure and associated
         information such as the simulation cell.
@@ -31,15 +41,32 @@ def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=['G', 'M', 'K', 'G
         Optional. Defines a set of k-points to be used; if not provided,
         this will automatically be set based on the bandpath of the system.
 
+    :param npoints:
+        Optional. Number of the k-points to be used.
+
     :return:
         None. Outputs from the band structure calculation are saved to a file
         named `gpaw_pi_bands.npz`.
     """
-    #path = ['G', 'M', 'K', 'G']
-    bandpath: BandPath = get_bandpath(path, atoms.cell, npoints=50)#kpts, x, X = get_bandpath(path, atoms.cell, npoints=200)
+    if path is None:
+        path = ['G', 'M', 'K', 'G']
+    bandpath: BandPath = get_bandpath(path, atoms.cell, npoints=npoints)#kpts, x, X = get_bandpath(path, atoms.cell, npoints=200)
     kpts: np.ndarray = bandpath.kpts
     x, X, labels = bandpath.get_linear_kpoint_axis()
+    kpts_cart = kpoint_convert(atoms.cell, skpts_kc=kpts)
 
+    if zoom_label is not None:
+        if zoom_label not in path: raise (f'The provided zoom_label zoom_label={zoom_label} is not in the '
+                                          f'provided path {path}')
+        special_point = kpoint_convert(atoms.cell, skpts_kc=bandpath.special_points[zoom_label])
+        # To compute the distance, must use cartesian coordinates
+
+        dist = np.linalg.norm(kpts_cart - special_point, axis=1)
+        filter = dist < zoom_distance/2
+        kpts = kpts[filter]
+        kpts_cart = kpts_cart[filter]
+        print(f'Going to get distance {zoom_distance} around {zoom_label}')
+        print(f'Current kpath {kpts}')
 
     #atoms, calc = restart('DFT.gpw')
 
@@ -50,7 +77,7 @@ def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=['G', 'M', 'K', 'G
     )
 
     bs = calc_bs.band_structure()
-    kpts_cart = kpoint_convert(atoms.cell, skpts_kc=kpts)#bs.get_kpoints(cartesian=True)
+    #kpts_cart = kpoint_convert(atoms.cell, skpts_kc=kpts)#bs.get_kpoints(cartesian=True)
     print(kpts_cart)
     # Energies and Fermi level
     E = bs.energies[0]        # shape: (Nk, Nbands)
