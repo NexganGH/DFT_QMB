@@ -1,4 +1,4 @@
-# config_zgnr.py
+# config_zgnr_LCAO.py
 
 import os
 import sys

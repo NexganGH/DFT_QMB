@@ -19,9 +19,9 @@ fermi_width = 0.01  # Fermi-Dirac smearing (eV)
 spin_seed = 0.30    # momento magnetico iniziale in modulo sugli edge
 
 # Scegli modalità di calcolo:
-use_pw = True      # True -> PW, False -> LCAO
+use_pw = False      # True -> PW, False -> LCAO
 
-pw_ecut = 250       # eV, se use_pw = True
+pw_ecut = 200       # eV, se use_pw = True
 lcao_basis = 'dzp'  # se use_pw = False
 
 # --- Relax ---

@@ -1,6 +1,6 @@
 /3_graphene_nanoribbons/gnr_pw.gpw
 /2_graphene_bilayers/scripts/tight_binding/scripts/DFT.gpw
-/graphene nanoribbons/spin polarised dft/zgnr_Ny4_M1_scf.gpw
+/graphene nanoribbons/spin polarised dft LCAO/zgnr_Ny4_M1_scf.gpw
 /graphene nanoribbons/normal dft saturated/zgnr2_nonmag_relaxed.gpw
 /graphene nanoribbons/normal dft saturated/zgnr4_nonmag_relaxed.gpw
 /graphene nanoribbons/normal dft autopilot saturated 400_250 sampling/runs/ZGNR-1/zgnr1_nonmag_relaxed.gpw
@@ -15,3 +15,9 @@
 /graphene nanoribbons/normal dft autopilot saturated 300_200 sampling/runs/ZGNR-8/zgnr8_nonmag_relaxed.gpw
 /graphene nanoribbons/spin polarised dft nanoribbon/zgnr_scf.gpw
 /graphene nanoribbons/spin polarised dft nanoribbon armchair for 2 strands/zgnr_scf.gpw
+/graphene nanoribbons/spin polarised dft PlaneWaves/zgnr_Ny4_M1_scf.gpw
+/graphene nanoribbons/spin polarised dft autopilot planewaves/zgnr_sweep_results/Ny1/zgnr_Ny1_M1_scf.gpw
+/graphene nanoribbons/spin polarised dft autopilot planewaves/zgnr_sweep_results/Ny2/zgnr_Ny2_M1_scf.gpw
+/graphene nanoribbons/spin polarised dft autopilot planewaves/zgnr_sweep_results/Ny4/zgnr_Ny4_M1_scf.gpw
+/graphene nanoribbons/spin polarised dft autopilot planewaves/zgnr_sweep_results/Ny6/zgnr_Ny6_M1_scf.gpw
+/graphene nanoribbons/spin polarised dft autopilot planewaves/zgnr_sweep_results/Ny8/zgnr_Ny8_M1_scf.gpw
