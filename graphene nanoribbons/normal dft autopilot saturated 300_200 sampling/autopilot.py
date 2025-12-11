@@ -10,7 +10,7 @@ Optional (for interactive/zoomable plots): plotly
 
 Folder layout (expected):
 - this script
-- config_zgnr.py    (as provided)
+- config_zgnr_LCAO.py    (as provided)
 - 01/02/03/04 scripts not used directly (we re-implement with params)
 - TB code: config_zgnr.get_tb_module() -> module with H_zgnr_k(k, N, t, a)
 
