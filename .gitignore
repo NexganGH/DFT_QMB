@@ -15,3 +15,5 @@
 /graphene nanoribbons/normal dft autopilot saturated 300_200 sampling/runs/ZGNR-8/zgnr8_nonmag_relaxed.gpw
 /graphene nanoribbons/spin polarised dft nanoribbon/zgnr_scf.gpw
 /graphene nanoribbons/spin polarised dft nanoribbon armchair for 2 strands/zgnr_scf.gpw
+/2_graphene_bilayers/scripts/tight_binding/gpw/ab.gpw
+/2_graphene_bilayers/scripts/tight_binding/scripts/tw_blg_patch.txt
