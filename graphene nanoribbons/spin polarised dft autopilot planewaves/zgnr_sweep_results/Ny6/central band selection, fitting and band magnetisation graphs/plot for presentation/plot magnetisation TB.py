@@ -1,4 +1,4 @@
-# plot_magnetisation_TB.py
+# plot amgnetisation TB.py
 #
 # ZGNR schematic magnetization map with zigzag chains (TB mean-field prediction):
 #  - Along each strand: A-B-A-B-... (alternating along x)
@@ -10,6 +10,8 @@
 # Reads fitted TB results from:
 #   zgnr_Ny*_M1_tb_fit.npz  (must contain mA_tb, mB_tb; optionally mA_dft, mB_dft)
 #
+# IMPORTANT: outputs are saved in the SAME FOLDER as this script, regardless of CWD.
+#
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,19 +19,25 @@ from matplotlib.colors import TwoSlopeNorm
 from matplotlib.lines import Line2D
 
 # ----------------------------
-# Config
+# Paths (always relative to this script)
 # ----------------------------
-NPZ_PATH = "zgnr_Ny4_M1_tb_fit.npz"   # <-- change to Ny8 file as needed
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Length of the schematic along x
+NPZ_FILENAME = "zgnr_Ny6_M1_tb_fit.npz"  # <-- change to Ny8 file as needed
+NPZ_PATH = os.path.join(SCRIPT_DIR, NPZ_FILENAME)
+
+OUT_PNG = os.path.join(SCRIPT_DIR, "tb_mag_lattice_zigzag.png")
+OUT_PDF = os.path.join(SCRIPT_DIR, "tb_mag_lattice_zigzag.pdf")
+
+# ----------------------------
+# Geometry / style config
+# ----------------------------
 N_REPEAT  = 6     # AB pairs per strand (controls length)
 DX_STEP   = 0.9
 
-# Spacing/shape
 DY_STRAND = 1.6
 Y_ZIG     = 0.35
 
-# Plot cosmetics
 MARKER_SIZE = 260
 EDGE_LW     = 0.9
 BOND_LW     = 1.1
@@ -37,10 +45,7 @@ BOND_ALPHA  = 0.85
 
 CMAP = "RdBu_r"
 
-OUT_PNG = "tb_mag_lattice_zigzag.png"
-OUT_PDF = "tb_mag_lattice_zigzag.pdf"
-
-# If your preferred convention is the one you used successfully:
+# You said the correct convention for your sketch is:
 #   starts_with_A = (m % 2 == 1)
 STARTS_WITH_A_PARITY_IS_1 = True  # True -> (m%2==1); False -> (m%2==0)
 
@@ -135,7 +140,10 @@ def build_zigzag_strands(mA, mB, n_repeat, dx_step, dy_strand, y_zig, starts_wit
 
 def main():
     if not os.path.exists(NPZ_PATH):
-        raise FileNotFoundError(f"Cannot find {NPZ_PATH} (cwd: {os.getcwd()})")
+        raise FileNotFoundError(
+            f"Cannot find TB fit file:\n  {NPZ_PATH}\n"
+            f"(script dir: {SCRIPT_DIR})"
+        )
 
     # --- Load TB magnetization per strand (A/B) ---
     mA, mB = load_mA_mB_from_tbfit(NPZ_PATH, which="tb")
@@ -178,12 +186,12 @@ def main():
         zorder=3
     )
 
-    # colorbar
+    # colorbar (bigger label + ticks + spacing)
     cbar = fig.colorbar(scA, ax=ax, pad=0.02)
     cbar.set_label("Magnetization per site (μB)", fontsize=14, labelpad=12)
     cbar.ax.tick_params(labelsize=13)
 
-    # no axes labels/ticks
+    # remove axes clutter
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_xlabel("")
@@ -202,19 +210,19 @@ def main():
     ]
     ax.legend(handles=legend_elements, frameon=True, loc="upper right", labelspacing=0.4)
 
-    # tight limits
+    # tighter limits (reduce useless whitespace)
     xx = np.concatenate([XA, XB])
     yy = np.concatenate([YA, YB])
     ax.set_xlim(xx.min() - 0.3, xx.max() + 0.3)
     ax.set_ylim(yy.min() - 0.6, yy.max() + 0.6)
 
-    # save
+    # save in the script folder
     fig.savefig(OUT_PNG, dpi=300)
     fig.savefig(OUT_PDF)
+
     plt.show()
 
-    print(f"Saved: {OUT_PNG}")
-    print(f"Saved: {OUT_PDF}")
+    print(f"Saved:\n  {OUT_PNG}\n  {OUT_PDF}")
 
 
 if __name__ == "__main__":

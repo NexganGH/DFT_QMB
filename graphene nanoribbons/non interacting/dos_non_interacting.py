@@ -88,7 +88,7 @@ def dos_from_bands(energies, n_E=1000, eta=0.05):
 
 # ---------- 3. Example: band structure + DOS for one width ----------
 
-def plot_bands_and_dos(N=6, nk=1000, t=-2.7, a=1.0, eta=0.05):
+def plot_bands_and_dos(N=20, nk=1000, t=-2.7, a=1.0, eta=0.05):
     ks, E = bands_zgnr(N=N, nk=nk, t=t, a=a)
     E_grid, DOS = dos_from_bands(E, n_E=1000, eta=eta)
 
@@ -117,4 +117,4 @@ def plot_bands_and_dos(N=6, nk=1000, t=-2.7, a=1.0, eta=0.05):
 
 if __name__ == "__main__":
     # choose ribbon width and broadening
-    plot_bands_and_dos(N=4, nk=1000, eta=0.05)
+    plot_bands_and_dos(N=60, nk=1000, eta=0.05)
