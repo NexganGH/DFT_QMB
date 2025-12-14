@@ -199,9 +199,9 @@ def plot_trigonal_warping_3d(qx,
     fig.update_layout(
         title=title,
         scene=dict(
-            xaxis_title="q_x (scaled around K)",
-            yaxis_title="q_y (scaled around K)",
-            zaxis_title="E (eV, EF=0)",
+            xaxis_title="kx",
+            yaxis_title="ky",
+            zaxis_title="E - E_F (eV)",
             aspectmode="cube",
         ),
         template="plotly_white",
