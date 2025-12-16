@@ -1,7 +1,7 @@
 from ase.io import read
 import matplotlib.pyplot as plt
 
-images = read('../outputs/graphene_relax.traj', index=':')
+images = read('../outputs/graphene_relax2.traj', index=':')
 energies = [img.get_potential_energy() for img in images]
 
 print(energies)

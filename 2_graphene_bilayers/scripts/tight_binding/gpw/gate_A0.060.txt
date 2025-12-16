@@ -6,9 +6,9 @@
  |___|_|             
 
 User:   nico@NicosPC
-Date:   Sat Dec 13 18:40:36 2025
+Date:   Mon Dec 15 22:50:25 2025
 Arch:   x86_64
-Pid:    2724
+Pid:    2540
 CWD:    /mnt/c/Users/Torto/PycharmProjects/DFT_QMB/2_graphene_bilayers/scripts/tight_binding/semiconductor
 Python: 3.12.3
 gpaw:   /home/nico/gpaw-env/lib/python3.12/site-packages/gpaw
@@ -24,7 +24,7 @@ OpenMP: False
 OMP_NUM_THREADS: 1
 
 Input parameters:
-  external: {A: 0.060000000000000005,
+  external: {A: 0.06,
              name: ChargedPlanePotential,
              z_plane: 6.35}
 
@@ -120,13 +120,13 @@ Hamiltonian:
   XC and Coulomb potentials evaluated on a 28*28*384 grid
   Using the PBE Exchange-Correlation functional
   External potential:
-    <external_potentials.ChargedPlanePotential object at 0x763499a3a330>
+    <external_potentials.ChargedPlanePotential object at 0x73475f907050>
  
 
 XC parameters: PBE with 2 nearest neighbor stencil
 
 Memory estimate:
-  Process memory now: 1528.75 MiB
+  Process memory now: 1023.64 MiB
   Calculator: 349.22 MiB
     Density: 16.52 MiB
       Arrays: 7.46 MiB
@@ -195,26 +195,4 @@ Effective grid spacing dv^(1/3) = 0.1671
 
      iter     time        total  log10-change:
                          energy   eigst   dens
-iter:   1 18:41:03  -693.921095
-iter:   2 18:41:22  -344.074856   +1.37  +0.13
-iter:   3 18:41:40  -432.525027   +2.38  +0.03
-iter:   4 18:41:59  -248.015424   +1.05  -0.03
-iter:   5 18:42:17  -241.136784   +0.66  -0.31
-iter:   6 18:42:35  -237.094592   +0.46  -0.32
-iter:   7 18:42:54  -223.738588   +0.11  -0.34
-iter:   8 18:43:12  -220.528065   +0.35  -0.42
-iter:   9 18:43:30  -209.992888   -0.05  -0.56
-iter:  10 18:43:49  -210.338493   -0.50  -0.59
-iter:  11 18:44:07  -205.349135   -0.92  -0.55
-iter:  12 18:44:25  -203.021725   -0.79  -0.79
-iter:  13 18:44:43  -202.794514   -2.33  -1.03
-iter:  14 18:45:02  -201.883377   -1.09  -1.09
-iter:  15 18:45:20  -201.658400   -2.22  -1.39
-iter:  16 18:45:39  -201.652347   -2.77  -1.62
-iter:  17 18:46:00  -201.644911   -3.41  -1.62
-iter:  18 18:46:20  -201.666156   -2.97  -1.66
-iter:  19 18:46:38  -201.665573   -1.89  -1.75
-iter:  20 18:46:57  -201.685895   -3.00  -1.98
-iter:  21 18:47:15  -201.698492   -2.03  -2.02
-iter:  22 18:47:34  -201.698169   -2.94  -2.11
-iter:  23 18:47:53  -201.747673   -3.16  -2.14
+iter:   1 22:50:50  -693.921095

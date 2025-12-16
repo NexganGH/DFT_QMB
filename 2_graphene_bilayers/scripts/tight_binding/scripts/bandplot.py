@@ -94,5 +94,5 @@ def plot_bands(
     ax.legend()
 
     fig.tight_layout()
-    fig.savefig(outfile)
+    fig.savefig(outfile, dpi=500)
     plt.show()
