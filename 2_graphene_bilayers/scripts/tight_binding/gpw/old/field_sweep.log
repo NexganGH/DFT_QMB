@@ -1,0 +1,20 @@
+[2025-12-16 20:15:52] Running Ez=0.000 eV/Å
+[2025-12-16 20:21:26] Saved Ez=0.000, gap=0.3295 eV to CSV and ../gpw/ab_gate_plane_A0.000.gpw
+[2025-12-16 20:21:26] Running Ez=0.010 eV/Å
+[2025-12-16 20:30:38] Saved Ez=0.010, gap=0.5093 eV to CSV and ../gpw/ab_gate_plane_A0.010.gpw
+[2025-12-16 20:32:00] Saved K-zoom bands for Ez=0.010 to ../gpw/ab_gate_plane_A0.010_bands_KZOOM.npz
+[2025-12-16 20:33:43] Saved full-path bands for Ez=0.010 to ../gpw/ab_gate_plane_A0.010_bands_FULL.npz
+[2025-12-16 20:34:38] Full-path NPZ not found for Ez=0.000: ../gpw/ab_gate_plane_A0.000_bands_KZOOM.npz — skipping plot
+[2025-12-16 20:34:41] Full-path NPZ not found for Ez=0.000: ../gpw/ab_gate_plane_A0.000_bands_KZOOM.npz — skipping plot
+[2025-12-16 20:35:07] Full-path NPZ not found for Ez=0.000: ../gpw/ab_gate_plane_A0.000_bands_KZOOM.npz — skipping plot
+[2025-12-16 20:37:04] Saved full-path bands for Ez=0.000 to ../gpw/ab_gate_plane_A0.000_bands_FULL.npz
+[2025-12-16 20:37:11] Full-path NPZ not found for Ez=0.000: ../gpw/ab_gate_plane_A0.000_bands_KZOOM.npz — skipping plot
+[2025-12-16 20:37:14] Full-path NPZ not found for Ez=0.000: ../gpw/ab_gate_plane_A0.000_bands_KZOOM.npz — skipping plot
+[2025-12-16 20:38:12] Saved K-zoom bands for Ez=0.000 to ../gpw/ab_gate_plane_A0.000_bands_KZOOM.npz
+[2025-12-16 20:39:15] Skipping Ez=0.000 eV/Å (already in results)
+[2025-12-16 20:39:15] Skipping Ez=0.010 eV/Å (already in results)
+[2025-12-16 20:39:15] Running Ez=0.020 eV/Å
+[2025-12-16 20:39:30] Skipping Ez=0.000 eV/Å (already in results)
+[2025-12-16 20:39:30] Running Ez=0.001 eV/Å
+[2025-12-16 20:46:39] Saved Ez=0.001, gap=0.4433 eV to CSV and ../gpw/ab_gate_plane_A0.001.gpw
+[2025-12-16 20:46:39] Running Ez=0.002 eV/Å
