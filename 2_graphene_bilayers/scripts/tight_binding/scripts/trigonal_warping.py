@@ -162,24 +162,13 @@ def plot_trigonal_warping_3d(qx,
                              title="Trigonal warping near K (3D)",
                              zlim=None,
                              save_html=True,
-                             html_path="../data/trigonal_warping_3d.html"):
+                             html_path="../data/trigonal_warping_3d.html",
+                             title_fontsize=24,
+                             axis_title_fontsize=18,
+                             tick_fontsize=14,
+                             colorbar_title_fontsize=18):
     """
     Interactive 3D surface plot of a single low-energy band near K.
-
-    Parameters
-    ----------
-    qx, qy : (Nq, Nq) arrays
-        Displacements from K in scaled coordinates (meshgrid).
-    E_band : (Nq, Nq) array
-        Energies of one band, already shifted so EF = 0.
-    title : str
-        Plot title.
-    zlim : tuple or None
-        (zmin, zmax) to clip energy range for visualization, e.g. (-0.05, 0.05).
-    save_html : bool
-        If True, save interactive HTML plot.
-    html_path : str
-        Path where the HTML file will be saved.
     """
 
     Z = E_band.copy()
@@ -193,15 +182,34 @@ def plot_trigonal_warping_3d(qx,
             y=qy,
             z=Z,
             showscale=True,
+            colorbar=dict(
+                title=dict(
+                    text="E − E_F (eV)",
+                    font=dict(size=colorbar_title_fontsize),
+                ),
+                tickfont=dict(size=tick_fontsize),
+            ),
         )
     ])
 
     fig.update_layout(
-        title=title,
+        title=dict(
+            text=title,
+            font=dict(size=title_fontsize),
+        ),
         scene=dict(
-            xaxis_title="kx",
-            yaxis_title="ky",
-            zaxis_title="E - E_F (eV)",
+            xaxis=dict(
+                title=dict(text="kx", font=dict(size=axis_title_fontsize)),
+                tickfont=dict(size=tick_fontsize),
+            ),
+            yaxis=dict(
+                title=dict(text="ky", font=dict(size=axis_title_fontsize)),
+                tickfont=dict(size=tick_fontsize),
+            ),
+            zaxis=dict(
+                title=dict(text="E − E_F (eV)", font=dict(size=axis_title_fontsize)),
+                tickfont=dict(size=tick_fontsize),
+            ),
             aspectmode="cube",
         ),
         template="plotly_white",

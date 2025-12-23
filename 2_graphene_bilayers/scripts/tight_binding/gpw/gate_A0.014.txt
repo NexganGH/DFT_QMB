@@ -1,0 +1,259 @@
+
+  ___ ___ ___ _ _ _  
+ |   |   |_  | | | | 
+ | | | | | . | | | | 
+ |__ |  _|___|_____|  25.7.0
+ |___|_|             
+
+User:   nico@NicosPC
+Date:   Wed Dec 17 00:31:05 2025
+Arch:   x86_64
+Pid:    7238
+CWD:    /mnt/c/Users/Torto/PycharmProjects/DFT_QMB_OLD/2_graphene_bilayers/scripts/tight_binding/semiconductor
+Python: 3.12.3
+gpaw:   /home/nico/gpaw-env/lib/python3.12/site-packages/gpaw
+_gpaw:  /home/nico/gpaw-env/lib/python3.12/site-packages/
+        _gpaw.cpython-312-x86_64-linux-gnu.so
+ase:    /home/nico/gpaw-env/lib/python3.12/site-packages/ase (version 3.26.0)
+numpy:  /home/nico/gpaw-env/lib/python3.12/site-packages/numpy (version 2.3.5)
+scipy:  /home/nico/gpaw-env/lib/python3.12/site-packages/scipy (version 1.16.3)
+libxc:  5.2.3
+units:  Angstrom and eV
+cores: 1
+OpenMP: False
+OMP_NUM_THREADS: 1
+
+Input parameters:
+  external: {A: 0.014,
+             name: ChargedPlanePotential,
+             z_plane: 6.35}
+
+Initialize ...
+
+species:
+  C:
+    name: Carbon
+    id: 4aa54d4b901d75f77cc0ea3eec22967b
+    Z: 6.0
+    valence: 4
+    core: 2
+    charge: 0.0
+    file: /home/nico/gpaw-env/lib/python3.12/site-packages/gpaw_data/setups/C.PBE.gz
+    compensation charges: {type: gauss,
+                           rc: 0.20,
+                           lmax: 2}
+    cutoffs: {filter: 1.14,
+              core: 1.14}
+    projectors:
+      #              energy  rcut
+      - 2s(2.00)   -13.751   0.635
+      - 2p(2.00)    -5.284   0.635
+      -  s          13.461   0.635
+      -  p          21.927   0.635
+      -  d           0.000   0.635
+  
+    # Using partial waves for C as LCAO basis
+
+Reference energy: -4110.512462  # eV
+
+Spin-paired calculation
+
+Convergence criteria:
+ Maximum [total energy] change in last 3 cyles: 0.0005 eV / valence electron
+ Maximum integral of absolute [dens]ity change: 0.0001 electrons / valence electron
+ Maximum integral of absolute [eigenst]ate change: 4e-08 eV^2 / valence electron
+ Maximum number of scf [iter]ations: 333
+ (Square brackets indicate name in SCF output, whereas a 'c' in
+ the SCF output indicates the quantity has converged.)
+
+Symmetries present (total): 1
+
+  ( 1  0  0)
+  ( 0  1  0)
+  ( 0  0  1)
+
+324 k-points: 18 x 18 x 1 Monkhorst-Pack grid
+162 k-points in the irreducible part of the Brillouin zone
+       k-points in crystal coordinates                weights
+   0:     0.02777778   -0.47222222    0.00000000          2/324
+   1:     0.02777778   -0.41666667    0.00000000          2/324
+   2:     0.02777778   -0.36111111    0.00000000          2/324
+   3:     0.02777778   -0.30555556    0.00000000          2/324
+   4:     0.02777778   -0.25000000    0.00000000          2/324
+   5:     0.02777778   -0.19444444    0.00000000          2/324
+   6:     0.02777778   -0.13888889    0.00000000          2/324
+   7:     0.02777778   -0.08333333    0.00000000          2/324
+   8:     0.02777778   -0.02777778    0.00000000          2/324
+   9:     0.02777778    0.02777778    0.00000000          2/324
+          ...
+ 161:     0.47222222    0.47222222    0.00000000          2/324
+
+Wave functions: Plane wave expansion
+  Cutoff energy: 600.000 eV
+  Number of coefficients (min, max): 5763, 5969
+  Pulay-stress correction: 0.000000 eV/Ang^3 (de/decut=0.000000)
+  Using Numpy's FFT
+  ScaLapack parameters: grid=1x1, blocksize=None
+  Wavefunction extrapolation:
+    Improved wavefunction reuse through dual PAW basis 
+
+Occupation numbers: Fermi-Dirac:
+  width: 0.0100  # eV
+ 
+
+Eigensolver
+   Davidson(niter=2) 
+
+Densities:
+  Coarse grid: 14*14*192 grid
+  Fine grid: 28*28*384 grid
+  Total Charge: 0.000000 
+
+Density mixing:
+  Method: separate
+  Backend: pulay
+  Linear mixing parameter: 0.05
+  old densities: 5
+  Damping of long wavelength oscillations: 50 
+
+Hamiltonian:
+  XC and Coulomb potentials evaluated on a 28*28*384 grid
+  Using the PBE Exchange-Correlation functional
+  External potential:
+    <external_potentials.ChargedPlanePotential object at 0x7462f16f4290>
+ 
+
+XC parameters: PBE with 2 nearest neighbor stencil
+
+Memory estimate:
+  Process memory now: 2281.03 MiB
+  Calculator: 349.22 MiB
+    Density: 16.52 MiB
+      Arrays: 7.46 MiB
+      Localized functions: 6.18 MiB
+      Mixer: 2.87 MiB
+    Hamiltonian: 5.01 MiB
+      Arrays: 4.88 MiB
+      XC: 0.00 MiB
+      Poisson: 0.00 MiB
+      vbar: 0.12 MiB
+    Wavefunctions: 327.70 MiB
+      Arrays psit_nG: 206.57 MiB
+      Eigensolver: 1.76 MiB
+      Projections: 1.80 MiB
+      Projectors: 101.38 MiB
+      PW-descriptor: 16.19 MiB
+
+Total number of cores used: 1
+
+Number of atoms: 4
+Number of atomic orbitals: 16
+Number of bands in calculation: 14
+Number of valence electrons: 16
+Bands to converge: occupied
+
+... initialized
+
+Initializing position-dependent things.
+
+Density initialized from atomic densities
+Creating initial wave functions:
+  14 bands from LCAO basis set
+
+                       
+                       
+                       
+                       
+       C   C           
+                       
+                       
+                       
+           C  C        
+                       
+                       
+                       
+                       
+
+Atomic positions and initial magnetic moments
+
+Positions:
+   0 C      0.000000    0.000000    0.000000    ( 0.0000,  0.0000,  0.0000)
+   1 C      1.230000    0.710141    0.000000    ( 0.0000,  0.0000,  0.0000)
+   2 C     -1.230000   -0.710141    3.350000    ( 0.0000,  0.0000,  0.0000)
+   3 C      0.000000    0.000000    3.350000    ( 0.0000,  0.0000,  0.0000)
+
+Unit cell:
+           periodic     x           y           z      points  spacing
+  1. axis:    yes    2.460000    0.000000    0.000000    14     0.1522
+  2. axis:    yes    1.230000    2.130422    0.000000    14     0.1522
+  3. axis:    yes    0.000000    0.000000   33.500000   192     0.1745
+
+  Lengths:   2.460000   2.460000  33.500000
+  Angles:   90.000000  90.000000  60.000000
+
+Effective grid spacing dv^(1/3) = 0.1671
+
+     iter     time        total  log10-change:
+                         energy   eigst   dens
+iter:   1 00:31:29   -77.079484
+iter:   2 00:31:46   -61.148085   -0.53  -0.35
+iter:   3 00:32:04   -60.003607   -1.74  -0.67
+iter:   4 00:32:22   -56.325330   -0.63  -0.71
+iter:   5 00:32:42   -56.551648   -1.06  -1.05
+iter:   6 00:32:59   -55.955359   -1.42  -1.12
+iter:   7 00:33:17   -55.978899   -2.33  -1.50
+iter:   8 00:33:35   -56.102438   -1.74  -1.58
+iter:   9 00:33:52   -56.004008   -1.60  -1.50
+iter:  10 00:34:11   -55.878467   -2.22  -1.64
+iter:  11 00:34:30   -55.875767   -3.49  -2.19
+iter:  12 00:34:50   -55.885325   -3.02  -2.21
+iter:  13 00:35:07   -55.876199   -3.50  -2.22
+iter:  14 00:35:25   -55.871373   -3.78  -2.44
+iter:  15 00:35:42   -55.871254c  -5.35  -2.75
+iter:  16 00:35:59   -55.871240c  -5.31  -2.84
+iter:  17 00:36:17   -55.871125c  -5.50  -2.95
+iter:  18 00:36:34   -55.871040c  -5.18  -3.03
+iter:  19 00:36:53   -55.871031c  -6.20  -3.23
+iter:  20 00:37:11   -55.871037c  -5.92  -3.27
+iter:  21 00:37:30   -55.871030c  -6.07  -3.55
+iter:  22 00:37:48   -55.871029c  -7.12  -3.75
+iter:  23 00:38:06   -55.871028c  -7.01  -3.80
+iter:  24 00:38:25   -55.871029c  -6.82  -3.86
+iter:  25 00:38:44   -55.871028c  -7.62c -4.10c
+
+Converged after 25 iterations.
+
+Dipole moment: (0.004545, 0.002624, -19.033345) |e|*Ang
+
+Energy contributions relative to reference atoms: (reference = -4110.512462)
+
+Kinetic:        +35.170743
+Potential:      -30.330506
+External:       -24.757455
+XC:             -36.024297
+Entropy (-ST):   -0.000000
+Local:           +0.070488
+SIC:             +0.000000
+--------------------------
+Free energy:    -55.871028
+Extrapolated:   -55.871028
+
+Showing only first 2 kpts
+ Kpt  Band  Eigenvalues  Occupancy
+  0     6     -4.42655    2.00000
+  0     7     -3.20386    2.00000
+  0     8     -0.81586    0.00000
+  0     9      0.93711    0.00000
+
+  1     6     -5.07898    2.00000
+  1     7     -3.72229    2.00000
+  1     8     -0.13539    0.00000
+  1     9      1.70815    0.00000
+
+
+Fermi level: -1.49943
+
+Gap: 0.345 eV
+Transition (v -> c):
+  (s=0, k=93, n=7, [0.31, -0.31, 0.00]) -> (s=0, k=93, n=8, [0.31, -0.31, 0.00])
+No difference between direct/indirect transitions
