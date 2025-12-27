@@ -18,12 +18,10 @@ ROUND_EZ_DECIMALS = 3
 d_interlayer_A = 3.35  # Å
 
 # ------------------------------------------------------------
-# Hartree parameters (from your fit)
-#   Delta - Delta_ext = b0 + U_H * P_phys
-# with P_phys defined so that P_phys(Ez=0)=0 => Delta_sc(0)=b0
+# Hartree parameters (symmetric system)
 # ------------------------------------------------------------
-U_H_eV_per_e = 0.267023
-b0_eV = 0.145244
+U_H_eV_per_e = 0.257
+b0_eV = 0.0
 
 # ------------------------------------------------------------
 # Tight-binding parameters
@@ -32,10 +30,17 @@ a_cc = 1.42
 gamma0_eV = 2.687
 gamma1_eV = 0.262
 
-# K-patch sampling
-NK_RADIAL = 25
-NK_ANGULAR = 60
-K_RADIUS = 0.08  # 1/Å
+# ------------------------------------------------------------
+# K-patch parameters
+# ------------------------------------------------------------
+K_RADIUS_GAP = 0.02
+K_RADIUS_POL = 0.12
+
+NK_RADIAL_GAP = 30
+NK_ANGULAR_GAP = 90
+
+NK_RADIAL_POL = 30
+NK_ANGULAR_POL = 90
 
 # Self-consistency
 SC_TOL_eV = 1e-6
@@ -76,18 +81,27 @@ def K_point(b1, b2):
     return (b1 + 2.0 * b2) / 3.0
 
 
-def K_patch(K, radius, nr, na):
+def K_patch(K, radius, nr, na, include_center=True):
     ks = []
+    ws = []
+
+    if include_center:
+        ks.append(K.copy())
+        ws.append(0.0)
+
     for i in range(nr):
         r = radius * (i + 0.5) / nr
+        w = r
         for j in range(na):
             theta = 2.0 * np.pi * j / na
             ks.append(K + r * np.array([np.cos(theta), np.sin(theta)]))
-    return np.array(ks, float)
+            ws.append(w)
+
+    return np.array(ks, float), np.array(ws, float)
 
 
 # ============================================================
-# TB Hamiltonian (AB bilayer, gamma0-gamma1, bias +/-Delta/2)
+# TB Hamiltonian (AB bilayer)
 # ============================================================
 def f_k(kx, ky):
     d1 = np.array([0.0, a_cc])
@@ -115,61 +129,56 @@ def H_ab(kx, ky, Delta):
     H[2, 3] = t
     H[3, 2] = np.conjugate(t)
 
-    # interlayer dimer hopping (B1 <-> A2)
     H[1, 2] = gamma1_eV
     H[2, 1] = gamma1_eV
     return H
 
 
 # ============================================================
-# Polarisation + gap (absolute TB quantity)
+# Observables
 # ============================================================
-def tb_Pabs_and_gap(Delta, kpatch):
-    pol = 0.0
+def tb_gap(Delta, kpatch):
     vtop = -1e9
     cbot = +1e9
-
     for kx, ky in kpatch:
-        evals, vecs = np.linalg.eigh(H_ab(kx, ky, Delta))
+        evals = np.linalg.eigvalsh(H_ab(kx, ky, Delta))
+        vtop = max(vtop, evals[1])
+        cbot = min(cbot, evals[2])
+    return max(0.0, cbot - vtop)
 
-        # neutrality: occupy 2 lowest bands (per spin)
+
+def tb_Pabs(Delta, kpatch, weights):
+    pol = 0.0
+    norm = np.sum(weights)
+    for (kx, ky), w in zip(kpatch, weights):
+        if w == 0:
+            continue
+        _, vecs = np.linalg.eigh(H_ab(kx, ky, Delta))
         for b in (0, 1):
             v = vecs[:, b]
             w1 = (np.abs(v[0])**2 + np.abs(v[1])**2)
             w2 = (np.abs(v[2])**2 + np.abs(v[3])**2)
-            pol += (w2 - w1)
-
-        vtop = max(vtop, evals[1])
-        cbot = min(cbot, evals[2])
-
-    P_abs = 2.0 * pol / len(kpatch)  # spin degeneracy
-    Eg = max(0.0, cbot - vtop)
-    return float(P_abs), float(Eg)
+            pol += w * (w1 - w2)
+    return 2.0 * pol / norm
 
 
 # ============================================================
-# Self-consistency with a consistent polarisation shift
-#   P_phys(Delta) = P_abs(Delta) - P_abs(b0)
-#   Delta = Delta_ext + b0 + U_H * P_phys(Delta)
+# Self-consistency
 # ============================================================
 def Delta_ext(Ez):
-    return float(Ez) * float(d_interlayer_A)
+    return Ez * d_interlayer_A
 
 
-def solve_SC(Ez, kpatch, P_ref):
-    # use the physically expected branch near Delta ≈ Delta_ext + b0
-    Delta = Delta_ext(Ez) + b0_eV
-
+def solve_SC(Ez, kpatch_pol, w_pol, P_ref):
+    Delta = Delta_ext(Ez)
     for _ in range(SC_ITERS):
-        P_abs, _ = tb_Pabs_and_gap(Delta, kpatch)
+        P_abs = tb_Pabs(Delta, kpatch_pol, w_pol)
         P_phys = P_abs - P_ref
-        Delta_new = Delta_ext(Ez) + b0_eV + U_H_eV_per_e * P_phys
+        Delta_new = Delta_ext(Ez) + U_H_eV_per_e * P_phys
         if abs(Delta_new - Delta) < SC_TOL_eV:
-            Delta = Delta_new
-            break
+            return Delta_new
         Delta = Delta_new
-
-    return float(Delta)
+    return Delta
 
 
 # ============================================================
@@ -179,100 +188,62 @@ def main():
     Ez_gap, Eg_dft = load_csv_xy(GAP_CSV, "Ez", "bandgap_eV")
     Ez_pol, P_dft = load_csv_xy(POL_CSV, "Ez", "layer_polarisation_electrons")
 
-    if Ez_gap.size == 0:
-        raise RuntimeError(f"Missing or empty: {GAP_CSV}")
+    # --- FILTER DFT DATA ---
+    mask_gap = Ez_gap <= EZ_MAX
+    Ez_gap = Ez_gap[mask_gap]
+    Eg_dft = Eg_dft[mask_gap]
 
+    mask_pol = Ez_pol <= EZ_MAX
+    Ez_pol = Ez_pol[mask_pol]
+    P_dft = P_dft[mask_pol]
+
+    # --- FIELD GRID ---
     Ez_list = np.unique(np.round(Ez_gap, ROUND_EZ_DECIMALS))
-    Ez_list = Ez_list[Ez_list <= EZ_MAX]
     Ez_list = np.sort(Ez_list)
 
-    # Build K-patch
+    # --- K patches ---
     b1, b2 = graphene_reciprocal_vectors(a_cc)
     K = K_point(b1, b2)
-    kpatch = K_patch(K, K_RADIUS, NK_RADIAL, NK_ANGULAR)
 
-    # --- CONSISTENT REFERENCE SHIFT ---
-    # Enforce: P_phys(Ez=0) = 0  AND Hartree fit uses the same b0.
-    # That implies Delta_sc(0) = b0, so the correct reference is P_ref = P_abs(b0).
-    P_ref, Eg_ref = tb_Pabs_and_gap(b0_eV, kpatch)
-    print("[REF] Using consistent shift P_phys(Delta) = P_abs(Delta) - P_abs(b0).")
-    print(f"[REF] b0 = {b0_eV:.6f} eV")
-    print(f"[REF] P_ref = P_abs(b0) = {P_ref:.6e} e/cell (absolute TB)")
-    print(f"[REF] Eg(b0) (patch) = {Eg_ref:.6f} eV")
+    kpatch_gap, _ = K_patch(K, K_RADIUS_GAP, NK_RADIAL_GAP, NK_ANGULAR_GAP, True)
+    kpatch_pol, w_pol = K_patch(K, K_RADIUS_POL, NK_RADIAL_POL, NK_ANGULAR_POL, True)
 
-    # Run SC
+    # --- reference ---
+    P_ref = tb_Pabs(0.0, kpatch_pol, w_pol)
+
+    # --- run SC ---
     results = []
     for Ez in Ez_list:
-        d_ext = Delta_ext(Ez)
-        d_sc = solve_SC(Ez, kpatch, P_ref)
+        Delta_sc = solve_SC(Ez, kpatch_pol, w_pol, P_ref)
+        Eg_sc = tb_gap(Delta_sc, kpatch_gap)
+        P_phys = tb_Pabs(Delta_sc, kpatch_pol, w_pol) - P_ref
+        results.append((Ez, Delta_sc, P_phys, Eg_sc))
+        print(f"Ez={Ez:.4f}  Delta={Delta_sc:.6f}  P={P_phys:.6e}  Eg={Eg_sc:.6f}")
 
-        P_abs, Eg_sc = tb_Pabs_and_gap(d_sc, kpatch)
-        P_phys = P_abs - P_ref
-
-        results.append((Ez, d_ext, d_sc, P_phys, Eg_sc, d_sc - d_ext))
-
-        print(f"[SC] Ez={Ez:.4f}  Delta_ext={d_ext:.6f}  Delta_sc={d_sc:.6f}  "
-              f"P={P_phys:.6e}  Eg={Eg_sc:.6f}")
-
-    # Save CSV
+    # --- save ---
     with open(OUT_MODEL_CSV, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow([
-            "Ez", "Delta_ext_eV", "Delta_sc_eV", "P_phys_e_per_cell", "Eg_sc_eV",
-            "Delta_minus_Delta_ext_eV"
-        ])
-        for row in results:
-            w.writerow(row)
+        w.writerow(["Ez", "Delta_sc_eV", "P_phys_e_per_cell", "Eg_sc_eV"])
+        w.writerows(results)
 
-    print(f"\nSaved results to: {OUT_MODEL_CSV}")
-
-    # Arrays
+    # --- plots ---
     Ez_m = np.array([r[0] for r in results])
-    Delta_ext_m = np.array([r[1] for r in results])
-    Delta_m = np.array([r[2] for r in results])
-    P_m = np.array([r[3] for r in results])
-    Eg_m = np.array([r[4] for r in results])
-    Delta_minus_ext = np.array([r[5] for r in results])
+    Eg_m = np.array([r[3] for r in results])
+    P_m = np.array([r[2] for r in results])
 
-    # Plots
     plt.figure()
-    plt.plot(Ez_m, Eg_m, "o-", label="TB+Hartree SC Eg")
-    if Ez_gap.size > 0:
-        plt.plot(Ez_gap[Ez_gap <= EZ_MAX], Eg_dft[Ez_gap <= EZ_MAX], "o", label="DFT Eg (KZOOM)")
+    plt.plot(Ez_m, Eg_m, "o-", label="TB+Hartree SC")
+    plt.plot(Ez_gap, Eg_dft, "o", label="DFT")
     plt.xlabel("Ez (V/Å)")
     plt.ylabel("Eg (eV)")
-    plt.title("Gap vs field")
     plt.legend()
     plt.tight_layout()
 
     plt.figure()
-    plt.plot(Ez_m, P_m, "o-", label="TB+Hartree SC P (shifted)")
-    if Ez_pol.size > 0:
-        plt.plot(Ez_pol[Ez_pol <= EZ_MAX], P_dft[Ez_pol <= EZ_MAX], "o", label="DFT P_ind")
+    plt.plot(Ez_m, P_m, "o-", label="TB+Hartree SC")
+    plt.plot(Ez_pol, P_dft, "o", label="DFT")
     plt.xlabel("Ez (V/Å)")
     plt.ylabel("P (e/cell)")
-    plt.title("Polarisation vs field (shifted, P(0)=0 by construction)")
-    plt.legend()
-    plt.tight_layout()
-
-    plt.figure()
-    plt.plot(Ez_m, Delta_m, "o-", label="Delta_sc")
-    plt.plot(Ez_m, Delta_ext_m + b0_eV, "--", label="Delta_ext + b0")
-    plt.xlabel("Ez (V/Å)")
-    plt.ylabel("Delta (eV)")
-    plt.title("Internal asymmetry")
-    plt.legend()
-    plt.tight_layout()
-
-    # Debug: Delta - Delta_ext vs P (should match b0 + U_H P)
-    plt.figure()
-    plt.plot(P_m, Delta_minus_ext, "o", label="SC points")
-    Pfit = np.linspace(P_m.min(), P_m.max(), 200)
-    plt.plot(Pfit, b0_eV + U_H_eV_per_e * Pfit, "--",
-             label=rf"fit: $b_0 + U_H P$ (U_H={U_H_eV_per_e:.3f})")
-    plt.xlabel("P (e/cell)")
-    plt.ylabel(r"$\Delta-\Delta_{\mathrm{ext}}$ (eV)")
-    plt.title("Consistency with fitted Hartree law (debug)")
     plt.legend()
     plt.tight_layout()
 

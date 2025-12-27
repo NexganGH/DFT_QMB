@@ -2,6 +2,7 @@ import os
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
+from common.mpl_style import set_mpl_style
 
 # ============================================================
 # Configuration
@@ -25,7 +26,7 @@ P_MAX = -0.0075      # e / cell
 
 # ------------------------------------------------------------
 d_interlayer_A = 3.35     # Å
-gamma1_eV = 0.35          # eV
+gamma1_eV = 0.262          # eV
 
 
 # ============================================================
@@ -148,6 +149,7 @@ def main():
     # --------------------------------------------------------
     # Plots
     # --------------------------------------------------------
+    set_mpl_style()
     plt.figure()
     plt.plot(Ez, Eg, "o-")
     plt.xlabel("E_z")
@@ -173,15 +175,16 @@ def main():
 
     plt.figure()
     plt.plot(P, y, "o", alpha=0.3, label="All points")
-    plt.plot(P[fit_mask], y[fit_mask], "o", label="Fit points")
+    plt.plot(P[fit_mask], y[fit_mask], "o", label="Fitted points")
     Pfit = np.linspace(P.min(), P.max(), 300)
     plt.plot(Pfit, a * Pfit + b, "--",
-             label=f"Fit: U_H={a:.3f} eV/e")
+             label=rf"Fit: $U_H={a:.3f}$ eV/e")
     plt.xlabel("P (e / cell)")
-    plt.ylabel("Delta - Delta_ext (eV)")
-    plt.title("Hartree electrostatics test (manual fit)")
+    plt.ylabel(r"$\Delta - \Delta_{ext}$ (eV)")
+    plt.title("Hartree Parameter Estimation")
     plt.legend()
     plt.tight_layout()
+    plt.savefig('../data/fitted_hartree.pdf', dpi=500)
 
     plt.show()
 
