@@ -3,6 +3,9 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+from common.mpl_style import set_mpl_style
+
 # ============================================================
 # Configuration
 # ============================================================
@@ -234,19 +237,54 @@ def main():
     Eg_m = np.array([r[4] for r in results])
     Delta_minus_ext = np.array([r[5] for r in results])
 
+
+    set_mpl_style()
     # Plots
     plt.figure()
-    plt.plot(Ez_m, Eg_m, "o-", label="TB+Hartree SC Eg")
+    plt.plot(
+        Ez_m,
+        Eg_m,
+        linestyle="-",
+        alpha=0.4,
+        label="_nolegend_",
+        color="red"
+    )
+    plt.plot(
+        Ez_m,
+        Eg_m,
+        marker="o",
+        linestyle="None",
+        label="Self-consistent TB+Hartree",
+        color="red"
+    )
+    mask = Ez_gap <= EZ_MAX
     if Ez_gap.size > 0:
-        plt.plot(Ez_gap[Ez_gap <= EZ_MAX], Eg_dft[Ez_gap <= EZ_MAX], "o", label="DFT Eg (KZOOM)")
-    plt.xlabel("Ez (V/Å)")
-    plt.ylabel("Eg (eV)")
-    plt.title("Gap vs field")
+        plt.plot(
+            Ez_gap[mask],
+            Eg_dft[mask],
+            linestyle="-",
+            alpha=0.4,
+            label="_nolegend_",
+            color="blue"
+        )
+        plt.plot(
+            Ez_gap[mask],
+            Eg_dft[mask],
+            marker="o",
+            linestyle="None",
+            label="DFT",
+            color="blue"
+        )
+    plt.xlabel(r"$E_z$ (V/Å)")
+    plt.ylabel(r"$E_g$ (eV)")
+    plt.title("Gap vs External Field")
     plt.legend()
     plt.tight_layout()
 
+    plt.savefig('../data/gap_vs_field_predictions.pdf', dpi=500)
+
     plt.figure()
-    plt.plot(Ez_m, P_m, "o-", label="TB+Hartree SC P (shifted)")
+    plt.plot(Ez_m, P_m, "o-", label="Self-consistent TB predictions")
     if Ez_pol.size > 0:
         plt.plot(Ez_pol[Ez_pol <= EZ_MAX], P_dft[Ez_pol <= EZ_MAX], "o", label="DFT P_ind")
     plt.xlabel("Ez (V/Å)")

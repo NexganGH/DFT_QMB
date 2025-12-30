@@ -62,11 +62,13 @@ def set_mpl_style(
 
         # -------- Save --------
         "savefig.format": "pdf",
-        "savefig.dpi": 300,
+        "savefig.dpi": 500,
         "savefig.bbox": "tight",
         "savefig.facecolor": "white",
 
-        # -------- Text rendering --------
+        # --- Enable LaTeX ---
         "text.usetex": False,
+        "mathtext.fontset": "cm",
+        "font.family": "serif",
     })
 
