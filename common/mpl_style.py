@@ -8,7 +8,7 @@ def set_mpl_style(
     *,
     fontsize: int = 17,
     linewidth: float = 1.8,
-    use_latex: bool = True
+    use_latex: bool = True,
 ) -> None:
     """
     Apply a global Matplotlib style for publication-quality figures.

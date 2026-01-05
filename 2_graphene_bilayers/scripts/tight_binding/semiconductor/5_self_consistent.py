@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 from common.mpl_style import set_mpl_style
-
+from matplotlib.ticker import MultipleLocator
 # ============================================================
 # Configuration
 # ============================================================
@@ -280,6 +280,9 @@ def main():
     plt.title("Gap vs External Field")
     plt.legend()
     plt.tight_layout()
+    ax = plt.gca()
+    ax.yaxis.set_major_locator(MultipleLocator(0.05))  # major ticks every 0.05 eV
+    ax.yaxis.set_minor_locator(MultipleLocator(0.01))  # minor ticks every 0.01 eV
 
     plt.savefig('../data/gap_vs_field_predictions.pdf', dpi=500)
 

@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from common.mpl_style import set_mpl_style
+from matplotlib.ticker import MultipleLocator
 
 # ============================================================
 # Configuration
@@ -213,6 +214,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig('../gpw/rpa_effective_both.pdf', dpi=500)
+
     # ============================================================
     # Plot 2: Band gaps
     # ============================================================
@@ -224,6 +226,9 @@ def main():
     plt.ylabel(r"$E_g$ (eV)")
     plt.legend()
     plt.tight_layout()
+    ax = plt.gca()
+    ax.yaxis.set_major_locator(MultipleLocator(0.05))  # major ticks every 0.05 eV
+    ax.yaxis.set_minor_locator(MultipleLocator(0.01))  # minor ticks every 0.01 eV
 
     plt.savefig('../gpw/rpa_gaps_both.pdf', dpi=500)
 

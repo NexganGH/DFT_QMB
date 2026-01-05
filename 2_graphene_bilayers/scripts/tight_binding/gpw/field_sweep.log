@@ -1128,3 +1128,92 @@
 [2025-12-17 11:39:46] Saved band gaps to ../gpw/bandgaps_KZOOM.csv
 [2025-12-17 12:02:01] Saved GIF to ../gpw/bands_KZOOM_vs_field.gif
 [2025-12-17 12:02:50] Saved GIF to ../gpw/bands_KZOOM_vs_field.gif
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.000: ../gpw/ab_gate_plane_A0.000_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.001: ../gpw/ab_gate_plane_A0.001_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.002: ../gpw/ab_gate_plane_A0.002_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.003: ../gpw/ab_gate_plane_A0.003_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.004: ../gpw/ab_gate_plane_A0.004_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.005: ../gpw/ab_gate_plane_A0.005_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.006: ../gpw/ab_gate_plane_A0.006_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.007: ../gpw/ab_gate_plane_A0.007_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.008: ../gpw/ab_gate_plane_A0.008_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.009: ../gpw/ab_gate_plane_A0.009_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.010: ../gpw/ab_gate_plane_A0.010_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:33] K-zoom NPZ already exists for Ez=0.011: ../gpw/ab_gate_plane_A0.011_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.012: ../gpw/ab_gate_plane_A0.012_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.013: ../gpw/ab_gate_plane_A0.013_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.014: ../gpw/ab_gate_plane_A0.014_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.015: ../gpw/ab_gate_plane_A0.015_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.016: ../gpw/ab_gate_plane_A0.016_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.017: ../gpw/ab_gate_plane_A0.017_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.018: ../gpw/ab_gate_plane_A0.018_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.019: ../gpw/ab_gate_plane_A0.019_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.020: ../gpw/ab_gate_plane_A0.020_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.030: ../gpw/ab_gate_plane_A0.030_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.040: ../gpw/ab_gate_plane_A0.040_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.050: ../gpw/ab_gate_plane_A0.050_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.060: ../gpw/ab_gate_plane_A0.060_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.070: ../gpw/ab_gate_plane_A0.070_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.080: ../gpw/ab_gate_plane_A0.080_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.090: ../gpw/ab_gate_plane_A0.090_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.100: ../gpw/ab_gate_plane_A0.100_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.110: ../gpw/ab_gate_plane_A0.110_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.120: ../gpw/ab_gate_plane_A0.120_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.130: ../gpw/ab_gate_plane_A0.130_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.140: ../gpw/ab_gate_plane_A0.140_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.150: ../gpw/ab_gate_plane_A0.150_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.160: ../gpw/ab_gate_plane_A0.160_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.170: ../gpw/ab_gate_plane_A0.170_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.180: ../gpw/ab_gate_plane_A0.180_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.190: ../gpw/ab_gate_plane_A0.190_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.200: ../gpw/ab_gate_plane_A0.200_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.200: ../gpw/ab_gate_plane_A0.200_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.300: ../gpw/ab_gate_plane_A0.300_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.400: ../gpw/ab_gate_plane_A0.400_bands_KZOOM.npz — skipping
+[2026-01-03 12:48:34] K-zoom NPZ already exists for Ez=0.500: ../gpw/ab_gate_plane_A0.500_bands_KZOOM.npz — skipping
+[2026-01-03 12:49:14] Ez=0.000 -> gap=0.000036 eV
+[2026-01-03 12:49:14] Ez=0.001 -> gap=0.141658 eV
+[2026-01-03 12:49:15] Ez=0.002 -> gap=0.214046 eV
+[2026-01-03 12:49:15] Ez=0.003 -> gap=0.258743 eV
+[2026-01-03 12:49:15] Ez=0.004 -> gap=0.257285 eV
+[2026-01-03 12:49:15] Ez=0.005 -> gap=0.281438 eV
+[2026-01-03 12:49:16] Ez=0.006 -> gap=0.270422 eV
+[2026-01-03 12:49:16] Ez=0.007 -> gap=0.267275 eV
+[2026-01-03 12:49:16] Ez=0.008 -> gap=0.280257 eV
+[2026-01-03 12:49:16] Ez=0.009 -> gap=0.278390 eV
+[2026-01-03 12:49:17] Ez=0.010 -> gap=0.267196 eV
+[2026-01-03 12:49:17] Ez=0.011 -> gap=0.273793 eV
+[2026-01-03 12:49:17] Ez=0.012 -> gap=0.281630 eV
+[2026-01-03 12:49:17] Ez=0.013 -> gap=0.264365 eV
+[2026-01-03 12:49:18] Ez=0.014 -> gap=0.262372 eV
+[2026-01-03 12:49:18] Ez=0.015 -> gap=0.273868 eV
+[2026-01-03 12:49:18] Ez=0.016 -> gap=0.270888 eV
+[2026-01-03 12:49:19] Ez=0.017 -> gap=0.256510 eV
+[2026-01-03 12:49:19] Ez=0.018 -> gap=0.251745 eV
+[2026-01-03 12:49:19] Ez=0.019 -> gap=0.254610 eV
+[2026-01-03 12:49:20] Ez=0.020 -> gap=0.264320 eV
+[2026-01-03 12:49:20] Ez=0.030 -> gap=0.000000 eV
+[2026-01-03 12:49:20] Ez=0.040 -> gap=7.554165 eV
+[2026-01-03 12:49:20] Ez=0.050 -> gap=7.606758 eV
+[2026-01-03 12:49:20] Ez=0.060 -> gap=7.537424 eV
+[2026-01-03 12:49:21] Ez=0.070 -> gap=7.455643 eV
+[2026-01-03 12:49:21] Ez=0.080 -> gap=7.459366 eV
+[2026-01-03 12:49:21] Ez=0.090 -> gap=7.132647 eV
+[2026-01-03 12:49:22] Ez=0.100 -> gap=6.628870 eV
+[2026-01-03 12:49:22] Ez=0.110 -> gap=5.962137 eV
+[2026-01-03 12:49:22] Ez=0.120 -> gap=5.514870 eV
+[2026-01-03 12:49:22] Ez=0.130 -> gap=4.668971 eV
+[2026-01-03 12:49:23] Ez=0.140 -> gap=3.877807 eV
+[2026-01-03 12:49:23] Ez=0.150 -> gap=3.363392 eV
+[2026-01-03 12:49:23] Ez=0.160 -> gap=2.596638 eV
+[2026-01-03 12:49:23] Ez=0.170 -> gap=0.000000 eV
+[2026-01-03 12:49:24] Ez=0.180 -> gap=0.000000 eV
+[2026-01-03 12:49:24] Ez=0.190 -> gap=0.000000 eV
+[2026-01-03 12:49:24] Ez=0.200 -> gap=0.000000 eV
+[2026-01-03 12:49:24] Ez=0.200 -> gap=0.000000 eV
+[2026-01-03 12:49:25] Ez=0.300 -> gap=4.547623 eV
+[2026-01-03 12:49:25] Ez=0.400 -> gap=4.439322 eV
+[2026-01-03 12:49:25] Ez=0.500 -> gap=3.957352 eV
+[2026-01-03 12:49:25] Saved band gaps to ../gpw/bandgaps_KZOOM.csv
+[2026-01-03 12:50:11] Saved GIF to ../gpw/bands_KZOOM_vs_field.gif
+[2026-01-03 12:52:27] Saved GIF to ../gpw/bands_KZOOM_vs_field.gif
