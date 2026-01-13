@@ -2,7 +2,8 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-
+from common.mpl_style import set_mpl_style
+set_mpl_style()
 outdir = '../outputs/'
 
 # Load data
@@ -21,14 +22,14 @@ plt.axvline(0.0, linestyle='--', color='grey')
 plt.xlim(-10, 10)
 plt.ylim(bottom=0)
 
-plt.xlabel(r'Energy - $E_F$ (eV)')
+plt.xlabel(r'$E - E_F$ (eV)')
 plt.ylabel('PDOS (states/eV)')
-plt.title('Graphene PDOS: π and σ (DOSCalculator)')
+plt.title('Graphene PDOS: π and σ')
 plt.legend()
 plt.tight_layout()
 
 outfile = os.path.join(outdir, 'graphene_pdos_pi_sigma.png')
-plt.savefig(outfile, dpi=300)
+plt.savefig(outfile, dpi=500)
 plt.show()
 
 print("Saved plot:", outfile)

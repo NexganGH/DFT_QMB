@@ -124,7 +124,9 @@ class TBBandManager:
             bands[i,:] = np.sort(np.real(eigs))
         return bands
 
-    def create_3d_plot(self, theta, kpts=None):
+    def create_3d_plot(self, theta, kpts=None,
+    special_point_indices=None,
+    special_point_kpts=None,):
         atoms, calc = restart('../gpw/ab.gpw')
 
         # ======================================================
@@ -148,6 +150,8 @@ class TBBandManager:
         kx_vals = np.linspace(-2 * np.pi / a0, 2 * np.pi / a0, Nk)
         ky_vals = np.linspace(-2 * np.pi / a0, 2 * np.pi / a0, Nk)
         KX, KY = np.meshgrid(kx_vals, ky_vals)
+        kmin, kmax = KX.min()-0.25, KX.max()+0.25
+
 
         # Flatten to shape (Nk^2, 2)
         k_grid = np.c_[KX.ravel(), KY.ravel()]
@@ -169,16 +173,23 @@ class TBBandManager:
         # ======================================================
 
         fig = go.Figure()
+        Emin = bands.min()
+        Emax = bands.max()
 
         # --- plot band surfaces ---
         for n in range(nbands):
             fig.add_trace(go.Surface(
-                x=KX, y=KY, z=bands[:, :, n],
+                x=KX,
+                y=KY,
+                z=bands[:, :, n],
                 colorscale="Viridis",
+                cmin=Emin,
+                cmax=Emax,
                 opacity=0.65,
-                showscale=False,
+                showscale=(n == 0),  # show colorbar only once
                 name=f"Band {n + 1}"
             ))
+        print(KX, KY)
 
         # ======================================================
         # 4. Add TB k-path (your manual path)
@@ -215,25 +226,156 @@ class TBBandManager:
         # 6. Final layout
         # ======================================================
 
+        # DRAW THE PATH
+        #kpts_path, label_pos, labels = self.build_kpath()
+        if kpts is not None:
+            kpts_path = kpts
+            label_pos = kpts_path[[0, 1, 2, 3]]
+            E_path = self.tb_bands(kpts_path, theta)  # shape (Npath, 4)
+            band_idx = 3  # oppure 2, dipende dal tuo ordinamento
+            fig.add_trace(go.Scatter3d(
+                x=kpts_path[:, 0],
+                y=kpts_path[:, 1],
+                z=E_path[:, band_idx],
+                mode="lines",
+                line=dict(
+                    color="red",
+                    width=6,
+                    dash="dash"
+                ),
+                name="Γ–K–M–Γ",
+                showlegend=False
+            ))
+
+        if special_point_indices is not None and special_point_kpts is not None:
+            labels = list(special_point_indices.keys())
+
+            kpts_sp = np.array([
+                special_point_kpts[l] for l in labels
+            ])
+
+            # energies from TB at those points
+            E_sp = np.array([
+                self.tb_bands(np.array([k]), theta)[0, band_idx]
+                for k in kpts_sp
+            ])
+
+            fig.add_trace(go.Scatter3d(
+                x=kpts_sp[:, 0],
+                y=kpts_sp[:, 1],
+                z=E_sp,
+                mode="markers+text",
+                marker=dict(size=6, color="red"),
+                text=labels,
+                textposition="top center",
+                textfont=dict(
+                    color="blue",
+                    size=20,
+                    family="Arial Black"
+                ),
+                showlegend=False
+            ))
+            arrow_step = 4
+            idx = np.arange(0, len(kpts_path) - 1, arrow_step)
+            zscale = 0.15 * (np.ptp(kpts_path[:, 0]))
+
+            x0 = kpts_path[idx, 0]
+            y0 = kpts_path[idx, 1]
+            z0 = E_path[idx, band_idx]
+
+            dx = kpts_path[idx + 1, 0] - kpts_path[idx, 0]
+            dy = kpts_path[idx + 1, 1] - kpts_path[idx, 1]
+            dz = E_path[idx + 1, band_idx] - E_path[idx, band_idx]
+            norm = np.sqrt(dx ** 2 + dy ** 2 + dz ** 2)
+            norm[norm == 0] = 1.0
+
+            ux, uy, uz = dx / norm, dy / norm, dz / norm
+
+            fig.add_trace(go.Cone(
+                x=x0,
+                y=y0,
+                z=z0,
+                u=dx,
+                v=dy,
+                w=dz,
+                sizemode="absolute",
+                sizeref=0.5,
+                anchor="tail",
+                colorscale=[[0, "black"], [1, "black"]],
+                showscale=False
+            ))
+        #
+        # special_idx = label_pos[:-1]  # evita l'ultimo Γ duplicato
+        # special_k = kpts_path[special_idx]
+        # fig.add_trace(go.Scatter3d(
+        #     x=special_k[:, 0],
+        #     y=special_k[:, 1],
+        #     z=[E_path[i, band_idx] for i in special_idx],
+        #     mode="markers+text",
+        #     marker=dict(
+        #         size=6,
+        #         color="red"
+        #     ),
+        #     text=["Γ", "K", "M"],
+        #     textposition="top center",
+        #     textfont=dict(
+        #         color="blue",
+        #         size=20,  # bigger text
+        #         family="Arial Black"  # heavier weight (best available)
+        #     ),
+        #     showlegend=False
+        # ))
+        #
+
+
+
+        fig.update_layout(
+            scene=dict(
+                xaxis=dict(range=[kmin, kmax]),
+                yaxis=dict(range=[kmin, kmax])
+            )
+        )
+
         fig.update_layout(
             title="3D Band Surfaces + TB & ASE k-Paths",
+            template="none",
+            # --- global backgrounds ---
+            paper_bgcolor="white",  # outer background
+            plot_bgcolor="white",  # plot area background
+
             scene=dict(
-                xaxis_title="kx",
-                yaxis_title="ky",
-                zaxis_title="Energy (eV)",
-                xaxis=dict(backgroundcolor="black"),
-                yaxis=dict(backgroundcolor="black"),
-                zaxis=dict(backgroundcolor="black"),
+                bgcolor="white",  # 3D scene background
+
+                xaxis=dict(
+                    title="kx",
+                    backgroundcolor="white",
+                    gridcolor="lightgrey",
+                    zerolinecolor="lightgrey"
+                ),
+                yaxis=dict(
+                    title="ky",
+                    backgroundcolor="white",
+                    gridcolor="lightgrey",
+                    zerolinecolor="lightgrey"
+                ),
+                zaxis=dict(
+                    title=r"E - E_F (eV)",
+                    backgroundcolor="white",
+                    gridcolor="lightgrey",
+                    zerolinecolor="lightgrey"
+                ),
             ),
+
             width=950,
             height=800
         )
+
 
         # ======================================================
         # 7. Save figure
         # ======================================================
 
         output_path = "../data/3d_bands.html"
-        fig.write_html(output_path)
+        fig.write_html(output_path, include_mathjax="cdn")
 
         print(f'File saved in {output_path}')

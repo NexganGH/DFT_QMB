@@ -11,7 +11,7 @@ calc_scf = GPAW('../outputs/graphene_scf.gpw')
 # 2. Build high-symmetry k-path
 # -----------------------------------------------------
 path = bandpath(
-    ['G', 'K', 'M', 'G'],
+    ['G', 'M', 'K', 'G'],
     cell=calc_scf.atoms.cell,
     npoints=200
 )
@@ -93,7 +93,7 @@ np.savez(
     '../outputs/graphene_bands_raw.npz',
     x=x,
     xticks=xticks,
-    labels=np.array(['Γ', 'K', 'M', 'Γ']),
+    labels=np.array(['Γ', 'M', 'K', 'Γ']),
     eigs=eigs,
     fermi=fermi
 )

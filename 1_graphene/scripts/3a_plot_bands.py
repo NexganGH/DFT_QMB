@@ -2,7 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from plotstyle import set_plot_style
+from common.mpl_style import set_mpl_style
 set_plot_style()
+set_mpl_style()
 
 
 # -----------------------------------------------------
@@ -32,13 +34,13 @@ for xpos in xticks:
 
 plt.xticks(xticks, labels)
 plt.ylabel('Energy (eV)')
-plt.title('Graphene Band Structure (PBE)')
+plt.title('Graphene Band Structure')
 plt.tight_layout()
 
 # -----------------------------------------------------
 # 3. Save + show
 # -----------------------------------------------------
-plt.savefig('../outputs/graphene_bandstructure.png', dpi=300)
+plt.savefig('../outputs/graphene_bandstructure.png', dpi=500)
 plt.show()
 
 print("Saved plot to graphene_bandstructure.png")

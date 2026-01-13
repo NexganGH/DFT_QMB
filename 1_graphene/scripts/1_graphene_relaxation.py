@@ -4,6 +4,9 @@ from ase.optimize import BFGS
 from ase.io import Trajectory
 from gpaw import GPAW, PW
 import numpy as np
+import os
+
+os.makedirs('../outputs', exist_ok=True)
 
 # -----------------------------
 # 1. Build graphene + vacuum

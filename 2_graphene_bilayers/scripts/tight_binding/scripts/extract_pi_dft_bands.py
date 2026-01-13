@@ -49,8 +49,14 @@ def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=None,
         path = ['G', 'M', 'K', 'G']
     bandpath: BandPath = get_bandpath(path, atoms.cell, npoints=npoints)#kpts, x, X = get_bandpath(path, atoms.cell, npoints=200)
     kpts: np.ndarray = bandpath.kpts
-    x, X, labels = bandpath.get_linear_kpoint_axis()
+    #x, X, labels = bandpath.get_linear_kpoint_axis()
     kpts_cart = kpoint_convert(atoms.cell, skpts_kc=kpts)
+
+    special_points_cart = {
+        label: kpoint_convert(atoms.cell, skpts_kc=coord)
+        for label, coord in bandpath.special_points.items()
+        if label in path
+    }
 
     if zoom_label is not None:
         if zoom_label not in path: raise (f'The provided zoom_label zoom_label={zoom_label} is not in the '
@@ -64,6 +70,17 @@ def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=None,
         kpts_cart = kpts_cart[filter]
         print(f'Going to get distance {zoom_distance} around {zoom_label}')
         print(f'Current kpath {kpts}')
+
+    # --- find indices of special points in (possibly filtered) kpts_cart ---
+    special_point_indices = {}
+
+    for label, kpt in special_points_cart.items():
+        # distance to all k-points
+        dist = np.linalg.norm(kpts_cart - kpt, axis=1)
+
+        idx = np.argmin(dist)
+        if dist[idx] < 1e-6:  # tolerance in reciprocal space
+            special_point_indices[label] = int(idx)
 
     #atoms, calc = restart('DFT.gpw')
 
@@ -90,32 +107,89 @@ def save_pi_dft_bands(atoms: Atoms, calc: ASECalculator, path=None,
     # Extract π-band energies (shifted so EF = 0)
     E_pi = E[:, idx_pi] - EF             # shape: (Nk, 4)
 
+    # --- special points in the path (Cartesian) ---
+
+
     # Optionally save for TB fitting
-    np.savez(filename,
-             kpts=kpts_cart[:, :2],  # kx, ky
-             energies=E_pi,
-             band_indices=idx_pi,
-             EF=EF)
+    np.savez(
+        filename,
+        kpts=kpts_cart[:, :2],  # (Nk, 2)
+        energies=E_pi,  # (Nk, 4)
+        band_indices=idx_pi,
+        EF=EF,
+
+        # NEW:
+        special_point_labels=np.array(list(special_point_indices.keys())),
+        special_point_indices=np.array(list(special_point_indices.values())),
+        special_point_kpts=np.array(
+            [special_points_cart[l][:2] for l in special_point_indices]
+        )
+    )
 
 
-def load_pi_dft_bands() -> Tuple[np.ndarray, np.ndarray, np.ndarray, float]:
+from typing import Tuple, Dict
+import numpy as np
+import os
+
+def load_pi_dft_bands() -> Tuple[
+    np.ndarray,      # kpts
+    np.ndarray,      # energies
+    np.ndarray,      # band_indices
+    float,           # EF
+    Dict[str, int],  # special_point_indices
+    Dict[str, np.ndarray]  # special_point_kpts
+]:
     """
-    Loads the density functional theory (DFT) pi bands data from a specified file.
+    Load DFT π-band data and associated special-point metadata.
 
-    This function retrieves the k-points, energy values, band indices, and Fermi 
-    energy from a pre-saved file containing DFT pi band calculations. The data 
-    is loaded from a NumPy `.npz` file located at a fixed path.
-
-    :return: A tuple containing:
-        - kpts (numpy.ndarray): An array of k-points for the calculation.
-        - energies (numpy.ndarray): An array of energy values corresponding to
-          the k-points.
-        - band_indices (numpy.ndarray): An array containing indices of the bands.
-        - EF (float): The Fermi energy value.
+    Returns:
+        kpts:
+            (Nk, 2) array of Cartesian k-points (kx, ky)
+        energies:
+            (Nk, 4) array of π-band energies (E - EF)
+        band_indices:
+            Indices of the π bands in the original DFT calculation
+        EF:
+            Fermi energy
+        special_point_indices:
+            Dict mapping special-point labels -> index in kpts / energies
+        special_point_kpts:
+            Dict mapping special-point labels -> (kx, ky) coordinates
     """
     file_path = "../data/gpaw_pi_bands.npz"
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File {file_path} does not exist.")
 
-    data = np.load(file_path)
-    return data["kpts"], data["energies"], data["band_indices"], data["EF"]
+    data = np.load(file_path, allow_pickle=True)
+
+    kpts = data["kpts"]
+    energies = data["energies"]
+    band_indices = data["band_indices"]
+    EF = float(data["EF"])
+
+    # --- reconstruct special-point metadata ---
+    labels = data["special_point_labels"]
+    indices = data["special_point_indices"]
+    kpts_sp = data["special_point_kpts"]
+
+    labels = [l.replace('G', "Γ") for l in labels]
+    #print(labels)
+
+    special_point_indices = {
+        label: int(idx)
+        for label, idx in zip(labels, indices)
+    }
+
+    special_point_kpts = {
+        label: kpt
+        for label, kpt in zip(labels, kpts_sp)
+    }
+
+    return (
+        kpts,
+        energies,
+        band_indices,
+        EF,
+        special_point_indices,
+        special_point_kpts
+    )
