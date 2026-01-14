@@ -1,0 +1,173 @@
+{
+  "config": {
+    "widths": [
+      1,
+      2,
+      4,
+      6,
+      8
+    ],
+    "length_repeats": 1,
+    "vacuum": 12.0,
+    "ecut": 400,
+    "fmax": 0.02,
+    "kpts_relax": 20,
+    "nk_path": 250,
+    "nbands": 40,
+    "eta_dos": 0.05,
+    "show_plots": false,
+    "out_root": "runs",
+    "nk_tb_dos": 2000,
+    "nm_maxiter_full": 600,
+    "nm_maxiter_central": 500
+  },
+  "manifests": [
+    {
+      "width": 1,
+      "label_base": "zgnr1_nonmag",
+      "files": {
+        "gpw": "runs/ZGNR-1/zgnr1_nonmag_relaxed.gpw",
+        "dft_bands_dos_npz": "runs/ZGNR-1/zgnr1_nonmag_bands_dos.npz",
+        "pi_npz": "runs/ZGNR-1/zgnr1_nonmag_pi_bands.npz"
+      },
+      "fits": {
+        "full_pi": {
+          "t": -2.3798388980989973,
+          "dE": -0.16903101516610597,
+          "rmse": 0.6133173728396301,
+          "success": true,
+          "message": "Optimization terminated successfully."
+        },
+        "central_only": {
+          "t": -2.3798364257812503,
+          "dE": 0.0,
+          "rmse": 0.6361912940553871,
+          "central_indices": [
+            0,
+            1
+          ],
+          "success": true,
+          "message": "Optimization terminated successfully."
+        }
+      }
+    },
+    {
+      "width": 2,
+      "label_base": "zgnr2_nonmag",
+      "files": {
+        "gpw": "runs/ZGNR-2/zgnr2_nonmag_relaxed.gpw",
+        "dft_bands_dos_npz": "runs/ZGNR-2/zgnr2_nonmag_bands_dos.npz",
+        "pi_npz": "runs/ZGNR-2/zgnr2_nonmag_pi_bands.npz"
+      },
+      "fits": {
+        "full_pi": {
+          "t": -1.5715588455274725,
+          "dE": 0.0019772479464299983,
+          "rmse": 1.18016344234372,
+          "success": true,
+          "message": "Optimization terminated successfully."
+        },
+        "central_only": {
+          "t": -3.3055883789062506,
+          "dE": 0.0,
+          "rmse": 0.3485044399838511,
+          "central_indices": [
+            1,
+            2
+          ],
+          "success": true,
+          "message": "Optimization terminated successfully."
+        }
+      }
+    },
+    {
+      "width": 4,
+      "label_base": "zgnr4_nonmag",
+      "files": {
+        "gpw": "runs/ZGNR-4/zgnr4_nonmag_relaxed.gpw",
+        "dft_bands_dos_npz": "runs/ZGNR-4/zgnr4_nonmag_bands_dos.npz",
+        "pi_npz": "runs/ZGNR-4/zgnr4_nonmag_pi_bands.npz"
+      },
+      "fits": {
+        "full_pi": {
+          "t": -1.4826548304129294,
+          "dE": 0.008773276683175932,
+          "rmse": 1.0019636718307825,
+          "success": true,
+          "message": "Optimization terminated successfully."
+        },
+        "central_only": {
+          "t": -4.821174316406252,
+          "dE": 0.0,
+          "rmse": 0.3798588834252726,
+          "central_indices": [
+            3,
+            4
+          ],
+          "success": true,
+          "message": "Optimization terminated successfully."
+        }
+      }
+    },
+    {
+      "width": 6,
+      "label_base": "zgnr6_nonmag",
+      "files": {
+        "gpw": "runs/ZGNR-6/zgnr6_nonmag_relaxed.gpw",
+        "dft_bands_dos_npz": "runs/ZGNR-6/zgnr6_nonmag_bands_dos.npz",
+        "pi_npz": "runs/ZGNR-6/zgnr6_nonmag_pi_bands.npz"
+      },
+      "fits": {
+        "full_pi": {
+          "t": -1.4620770263671896,
+          "dE": 0.004083724975585942,
+          "rmse": 0.9611481514454786,
+          "success": true,
+          "message": "Optimization terminated successfully."
+        },
+        "central_only": {
+          "t": -6.316062011718753,
+          "dE": 0.0,
+          "rmse": 0.4479261157825042,
+          "central_indices": [
+            5,
+            6
+          ],
+          "success": true,
+          "message": "Optimization terminated successfully."
+        }
+      }
+    },
+    {
+      "width": 8,
+      "label_base": "zgnr8_nonmag",
+      "files": {
+        "gpw": "runs/ZGNR-8/zgnr8_nonmag_relaxed.gpw",
+        "dft_bands_dos_npz": "runs/ZGNR-8/zgnr8_nonmag_bands_dos.npz",
+        "pi_npz": "runs/ZGNR-8/zgnr8_nonmag_pi_bands.npz"
+      },
+      "fits": {
+        "full_pi": {
+          "t": -1.4869578399854169,
+          "dE": -0.5851565196921253,
+          "rmse": 1.0420647082858527,
+          "success": true,
+          "message": "Optimization terminated successfully."
+        },
+        "central_only": {
+          "t": -1.2599560546875026,
+          "dE": 0.0,
+          "rmse": 2.071380333966934,
+          "central_indices": [
+            7,
+            8
+          ],
+          "success": true,
+          "message": "Optimization terminated successfully."
+        }
+      }
+    }
+  ],
+  "elapsed_s": 62593.57,
+  "note": "Interactive HTML plots are present only if plotly is installed."
+}

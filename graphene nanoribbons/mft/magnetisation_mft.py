@@ -359,9 +359,9 @@ def plot_magnetization_profile(result, filename=None):
 if __name__ == "__main__":
     # Choose number of strands Ny:
     # Ny = 4, 8, 16, ... larger Ny = wider ribbon (more 1D-like edges)
-    Ny = 1
+    Ny = 19
     t = 1.0
-    U = 1     # try 2.0, 2.5, 3.0 to see stronger magnetization
+    U = 2     # try 2.0, 2.5, 3.0 to see stronger magnetization
     Nk = 400
     filling = 1.0   # half-filling: 1 electron per site
 
