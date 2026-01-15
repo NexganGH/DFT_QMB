@@ -146,7 +146,7 @@ class TBBandManager:
         # 1. Build a 2D grid over kx, ky (same grid as your code)
         # ======================================================
         a0 = self.a0
-        Nk = 60
+        Nk = 200
         kx_vals = np.linspace(-2 * np.pi / a0, 2 * np.pi / a0, Nk)
         ky_vals = np.linspace(-2 * np.pi / a0, 2 * np.pi / a0, Nk)
         KX, KY = np.meshgrid(kx_vals, ky_vals)

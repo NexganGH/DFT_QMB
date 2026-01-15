@@ -79,7 +79,7 @@ def delta_from_gap(Eg, gamma1=gamma1_eV):
     Eg = np.asarray(Eg, float)
     if np.any(Eg >= 2 * gamma1):
         raise ValueError("Eg >= 2*gamma1: inversion invalid")
-    return (gamma1 * Eg) / np.sqrt(4 * gamma1**2 - Eg**2)
+    return (gamma1 * Eg) / np.sqrt(2 * gamma1**2 - Eg**2)
 
 
 def delta_ext_from_field(Ez, d_A=d_interlayer_A):
