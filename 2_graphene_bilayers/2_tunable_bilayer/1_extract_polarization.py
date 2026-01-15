@@ -6,8 +6,10 @@ import numpy as np
 from gpaw import GPAW
 
 #=============================================================
-# In this file we extract the polarization to later use for fitting.
+# Here we extract the polarization to later use for fitting.
 #============================================================
+
+
 # ============================================================
 # Configuration
 # ============================================================

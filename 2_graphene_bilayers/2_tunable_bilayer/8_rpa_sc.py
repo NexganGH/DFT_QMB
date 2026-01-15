@@ -113,7 +113,7 @@ def load_rpa_eps(path):
 
 
 # ============================================================
-# Lattice + K patch
+# Lattice + K patch -> We need to apply a patch around the K point where to run the SC code.
 # ============================================================
 def graphene_reciprocal_vectors(a_cc_):
     a = np.sqrt(3.0) * a_cc_
