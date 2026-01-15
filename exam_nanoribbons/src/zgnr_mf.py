@@ -69,7 +69,7 @@ def make_all_collection_dirs(base_dir, mode_tag):
 
 
 # ===========================================================
-# 1) Core MF solver (keep your simulation core; no plotting here)
+# 1) Core MF solver
 # ===========================================================
 
 def build_h0_zigzag(Ny, k, t=1.0, a=1.0):
@@ -269,7 +269,7 @@ def compute_dos(result, nE=600, E_min=None, E_max=None, eta=0.05):
 
 
 # ===========================================================
-# 2) Plotting (use your good style; no hard-coded params)
+# 2) Plotting
 # ===========================================================
 
 def central_band_indices(Ek, mu):

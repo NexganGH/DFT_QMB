@@ -86,7 +86,7 @@ def dos_from_bands(energies: np.ndarray, n_E: int = 1000, eta: float = 0.05):
 
 
 # ===========================================================
-# 2) Central bands (fixed indices -> no vertical artifacts)
+# 2) Central bands
 # ===========================================================
 
 def extract_central_bands_fixed(E: np.ndarray, N: int):
@@ -101,7 +101,7 @@ def extract_central_bands_fixed(E: np.ndarray, N: int):
 
 
 # ===========================================================
-# 3) Plot helpers: keep YOUR style
+# 3) Plot helpers
 # ===========================================================
 
 def add_corner_label(ax, text: str, where: str = "tr"):

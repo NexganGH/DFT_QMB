@@ -1,7 +1,7 @@
 # src/spindft_tb_fit_core.py
 import numpy as np
 
-# ✅ Import your MF solver (this must be in src/ and importable)
+# Import your MF solver (this must be in src/ and importable)
 # It must return a dict with keys: k_grid, E, mu, mA, mB
 from zgnr_mf import solve_zgnr_mf
 
