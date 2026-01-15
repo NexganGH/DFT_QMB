@@ -11,18 +11,16 @@ from matplotlib.ticker import MultipleLocator
 # ============================================================
 OUT_DIR = "../gpw"
 GAP_CSV = os.path.join(OUT_DIR, "bandgaps_KZOOM.csv")
-POL_CSV = os.path.join(OUT_DIR, "layer_polarisation_vs_field.csv")
 RPA_EPS_CSV = os.path.join(OUT_DIR, "epsilon_vs_field.csv")
 
 EZ_MAX = 0.02
-ROUND_EZ_DECIMALS = 3
 
 # Geometry
 d_interlayer_A = 3.35  # Å
 
-# Hartree parameters (DFT reference)
+# Hartree parameters
 U_H_eV_per_e = 0.267023
-b0_eV = 0.0
+b0_eV = 0.145244
 
 # Tight-binding parameters
 a_cc = 1.42
@@ -137,8 +135,9 @@ def tb_Pabs_and_gap(Delta, kpatch):
         evals, vecs = np.linalg.eigh(H_ab(kx, ky, Delta))
         for b in (0, 1):
             v = vecs[:, b]
-            pol += (np.abs(v[2])**2 + np.abs(v[3])**2) \
-                 - (np.abs(v[0])**2 + np.abs(v[1])**2)
+            w1 = (np.abs(v[0])**2 + np.abs(v[1])**2)
+            w2 = (np.abs(v[2])**2 + np.abs(v[3])**2)
+            pol += (w2 - w1)
         vtop = max(vtop, evals[1])
         cbot = min(cbot, evals[2])
     P_abs = 2.0 * pol / len(kpatch)
@@ -153,12 +152,12 @@ def Delta_ext(Ez):
     return Ez * d_interlayer_A
 
 
-def solve_SC(Ez, kpatch, P_ref, Ueff):
-    Delta = Delta_ext(Ez)
+def solve_SC(Ez, kpatch, P_ref, Ueff, b0=0.0):
+    Delta = Delta_ext(Ez) + b0
     for _ in range(SC_ITERS):
         P_abs, _ = tb_Pabs_and_gap(Delta, kpatch)
         P_phys = P_abs - P_ref
-        Delta_new = Delta_ext(Ez) + Ueff * P_phys
+        Delta_new = Delta_ext(Ez) + b0 + Ueff * P_phys
         if abs(Delta_new - Delta) < SC_TOL_eV:
             break
         Delta = Delta_new
@@ -170,68 +169,70 @@ def solve_SC(Ez, kpatch, P_ref, Ueff):
 # ============================================================
 def main():
     Ez_gap, Eg_dft = load_csv_xy(GAP_CSV, "Ez", "bandgap_eV")
-
     Ez_eps, eps_nlfc, eps_lfc = load_rpa_eps_both(RPA_EPS_CSV)
 
-    eps0_nlfc = eps_nlfc[Ez_eps == 0.0][0]
-    eps0_lfc  = eps_lfc[Ez_eps == 0.0][0]
-
-    Ueff_nlfc = U_H_eV_per_e * eps0_nlfc / eps_nlfc
-    Ueff_lfc  = U_H_eV_per_e * eps0_lfc  / eps_lfc
+    i0 = np.argmin(np.abs(Ez_eps))
+    Ueff_nlfc = U_H_eV_per_e * eps_nlfc[i0] / eps_nlfc
+    Ueff_lfc  = U_H_eV_per_e * eps_lfc[i0]  / eps_lfc
 
     b1, b2 = graphene_reciprocal_vectors(a_cc)
     K = K_point(b1, b2)
     kpatch = K_patch(K, K_RADIUS, NK_RADIAL, NK_ANGULAR)
 
-    P_ref, _ = tb_Pabs_and_gap(0.0, kpatch)
+    P_ref_h, _ = tb_Pabs_and_gap(b0_eV, kpatch)
+    P_ref_rpa, _ = tb_Pabs_and_gap(0.0, kpatch)
 
-    Eg_dft = Eg_dft[Ez_gap <= EZ_MAX]
-    Ez_gap = Ez_gap[Ez_gap <= EZ_MAX]
-    Eg_nlfc, Eg_lfc = [], []
+    mask = Ez_gap <= EZ_MAX
+    Ez_gap = Ez_gap[mask]
+    Eg_dft = Eg_dft[mask]
+
+    Eg_h, Eg_n, Eg_l = [], [], []
 
     for Ez in Ez_gap:
+        Eg_h.append(tb_Pabs_and_gap(
+            solve_SC(Ez, kpatch, P_ref_h, U_H_eV_per_e, b0=b0_eV), kpatch)[1])
+
         U_n = np.interp(Ez, Ez_eps, Ueff_nlfc)
         U_l = np.interp(Ez, Ez_eps, Ueff_lfc)
 
-        D_n = solve_SC(Ez, kpatch, P_ref, U_n)
-        D_l = solve_SC(Ez, kpatch, P_ref, U_l)
-
-        Eg_nlfc.append(tb_Pabs_and_gap(D_n, kpatch)[1])
-        Eg_lfc.append(tb_Pabs_and_gap(D_l, kpatch)[1])
+        Eg_n.append(tb_Pabs_and_gap(
+            solve_SC(Ez, kpatch, P_ref_rpa, U_n), kpatch)[1])
+        Eg_l.append(tb_Pabs_and_gap(
+            solve_SC(Ez, kpatch, P_ref_rpa, U_l), kpatch)[1])
 
     set_mpl_style()
 
     # ============================================================
-    # Plot 1: Effective Hartree coupling
+    # GAP PLOT
     # ============================================================
-    plt.figure()
-    plt.plot(Ez_eps, Ueff_nlfc, "o-", label="NLFC")
-    plt.plot(Ez_eps, Ueff_lfc, "s--", label="LFC")
-    plt.axhline(U_H_eV_per_e, linestyle=":", color="k", label=r"$U_H$")
-    plt.xlabel(r"$E_z$ (V/Å)")
-    plt.ylabel(r"$U_{\mathrm{eff}}$ (eV)")
-    plt.legend()
-    plt.tight_layout()
+    plt.figure(figsize=(6.0, 4.5))
 
-    plt.savefig('../gpw/rpa_effective_both.pdf', dpi=500)
+    plt.plot(Ez_gap, Eg_h, linestyle="--", marker="d",
+             color="tab:blue", alpha=0.55, lw=1.6,
+             markersize=4, label="TB Hartree")
 
-    # ============================================================
-    # Plot 2: Band gaps
-    # ============================================================
-    plt.figure()
-    plt.plot(Ez_gap, Eg_nlfc, "o-", label="TB + RPA-NLFC", color='red')
-    plt.plot(Ez_gap, Eg_lfc, "s--", label="TB + RPA-LFC", color='green')
-    plt.plot(Ez_gap, Eg_dft, "k.", label="DFT", color="blue")
-    plt.xlabel(r"$E_z$ (V/Å)")
+    plt.plot(Ez_gap, Eg_n, linestyle="--", marker="o",
+             color="tab:red", alpha=0.55, lw=1.6,
+             markersize=4, label="TB + RPA-NLFC")
+
+    plt.plot(Ez_gap, Eg_l, linestyle="--", marker="s",
+             color="tab:green", alpha=0.55, lw=1.6,
+             markersize=4, label="TB + RPA-LFC")
+
+    plt.plot(Ez_gap, Eg_dft, linestyle="-", marker="o",
+             color="black", lw=2.2, markersize=6.5,
+             markeredgewidth=0.8, label="DFT", zorder=10)
+
+    plt.xlabel(r"$E_z (V/\AA)$")
     plt.ylabel(r"$E_g$ (eV)")
-    plt.legend()
-    plt.tight_layout()
+    plt.legend(frameon=False)
+
     ax = plt.gca()
-    ax.yaxis.set_major_locator(MultipleLocator(0.05))  # major ticks every 0.05 eV
-    ax.yaxis.set_minor_locator(MultipleLocator(0.01))  # minor ticks every 0.01 eV
+    ax.yaxis.set_major_locator(MultipleLocator(0.05))
+    ax.yaxis.set_minor_locator(MultipleLocator(0.01))
 
-    plt.savefig('../gpw/rpa_gaps_both.pdf', dpi=500)
-
+    plt.tight_layout()
+    plt.savefig("../gpw/gap_vs_field_clean.pdf", dpi=500)
     plt.show()
 
 
