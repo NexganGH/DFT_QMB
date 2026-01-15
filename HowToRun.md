@@ -2,9 +2,11 @@
 
 ---
 
+**Note**: this is mainly for Windows users. In MacOS you do not need WSL. Just run the commands starting from Step. 4.
+
 # 1. Install and enable WSL
 
-Open **PowerShell as Administrator** and run:
+Open PowerShell as Administrator and run:
 
 ```powershell
 wsl --install
@@ -62,8 +64,6 @@ You should now see a Linux prompt similar to:
 yourname@YOURPC:~$
 ```
 
-This means WSL is working.
-
 ---
 
 # 4. Install required Linux packages
@@ -98,7 +98,7 @@ Your prompt should now show:
 
 ---
 
-# 6. Install ASE and GPAW (Linux only)
+# 6. Install ASE and GPAW
 
 Inside the virtual environment:
 
@@ -112,20 +112,8 @@ This will successfully compile/install GPAW inside WSL.
 
 ---
 
-# 7. (Optional) Test GPAW installation
-
-```python
-python3 - << 'EOF'
-import gpaw
-import ase
-print("GPAW installed:", gpaw.__version__)
-print("ASE installed:", ase.__version__)
-EOF
-```
-
----
-
-# 8. Configure PyCharm to use the WSL interpreter
+# 7. Configure PyCharm to use the WSL interpreter
+For this project we used the Pycharm IDE. You might as well simply run the commands on terminal. Here we show how to connect Pycharm to your Virtual Environment on WSL. If you are on MacOS/Linux, you need to select the virtual environment in the Pycharm settings.
 
 ### 1. Open PyCharm → *Settings*  
 `File → Settings → Project → Python Interpreter`
@@ -150,35 +138,55 @@ PyCharm will now execute all Python code inside Ubuntu.
 
 # 9. Run your DFT/GPAW scripts in PyCharm
 
-Use PyCharm normally.  
-All scripts will run in the Linux environment and will work with:
-
-- GPAW  
-- ASE  
-- NumPy/SciPy  
-- MPI (optional)
-
-This is now a complete, reproducible DFT environment.
+Now you can simply run Pycharm
 
 ---
 
-# 10. (Optional) Install Pythonk3-tk to visualize Ase structures
+Here is a **clean Step 10** you can drop in, written to match the style and level of the rest of the file. I’ll also fix the numbering so it’s consistent.
 
-On WSL
+---
+
+# 10. Install project dependencies from `pyproject.toml`
+
+After cloning the repository, move to the **main project directory** (the one containing `pyproject.toml`):
+
+```bash
+cd path/to/your/project
 ```
+
+Make sure your GPAW virtual environment is active:
+
+```bash
+source ~/gpaw-env/bin/activate
+```
+
+Then install the project dependencies specified in `pyproject.toml`:
+
+```bash
+pip install .
+```
+
+If you want an editable (development) install:
+```bash
+pip install -e .
+```
+
+This ensures that all required Python dependencies for the project are installed consistently.
+
+---
+
+# 11.  Install missing dependencies
+Not all Python dependencies are currently listed in pyproject.toml. If a script fails due to a missing package, install it as needed using:
+```
+pip install <package-name>
+```
+
+When using PyCharm, missing dependencies may also be detected automatically and can be installed directly when prompted. PyCharm will use the selected WSL-based interpreter.
+
+# 12. (Optional) Install python3-tk to visualize ASE structures**
+
+On WSL:
+
+```bash
 sudo apt install python3-tk
 ```
-
----
-
-# 🎉 Done!
-
-You now have:
-
-✔ Fully working WSL + Ubuntu  
-✔ Proper virtual environment  
-✔ GPAW + ASE installed  
-✔ PyCharm connected to WSL interpreter  
-✔ Reproducible setup for your DFT_QMB project  
-
-You can safely share this file with others to reproduce your environment exactly.
