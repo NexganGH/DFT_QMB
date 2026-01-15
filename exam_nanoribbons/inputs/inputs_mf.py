@@ -8,7 +8,7 @@
 #far a sweep run across N_MIN and N_MAX choose "sweep_N" flag
 #For a sweep fun on the interaction parameter U (keeping N fixed) choose "sweep_U" flag
 
-MODE = "sweep_N"     # "single" | "sweep_N" | "sweep_U"
+MODE = "single"     # "single" | "sweep_N" | "sweep_U"
 
 # --- single mode ---
 N_SINGLE = 6
