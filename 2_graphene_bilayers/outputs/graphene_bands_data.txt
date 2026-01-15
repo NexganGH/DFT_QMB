@@ -1,5 +1,0 @@
-Graphene Band-Structure Calculation
-Timestamp: 2025-11-27 17:04:04
-
-=== k-Path ===
-High-symmetry path: Γ → K → M → Γ
