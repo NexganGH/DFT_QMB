@@ -101,9 +101,7 @@ def compute_bands_pi(
         plt.savefig(bands_pi_png, dpi=300)
         plt.close()
 
-    # -----------------------
-    # Save npz (optional)
-    # -----------------------
+
     if bands_pi_npz:
         np.savez(
             bands_pi_npz,
