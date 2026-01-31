@@ -3,7 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from common.mpl_style import set_mpl_style
-
+# This file is for plotting.
 
 def compute_kpath_distance(kpts):
     """Return cumulative distance along k-path."""
